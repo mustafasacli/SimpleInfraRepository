@@ -1,4 +1,4 @@
-namespace SimpleInfra.Data.Core
+namespace SimpleInfra.Data
 {
     using System;
     using System.Collections.Generic;
