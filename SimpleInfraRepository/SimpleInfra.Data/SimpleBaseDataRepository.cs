@@ -4,7 +4,7 @@
 // summary:	Implements the simple base data repository class
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace MstInfra.Data.Core
+namespace SimpleInfra.Data
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,7 @@ namespace MstInfra.Data.Core
     ///
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public abstract class SimpleBaseDataRepository<T> : SimpleDataRepository<T> where T : class
+    public abstract class SimpleBaseDataRepository<T> : ISimpleDataRepository<T> where T : class
     {
         /// <summary>
         /// Context for the database.
