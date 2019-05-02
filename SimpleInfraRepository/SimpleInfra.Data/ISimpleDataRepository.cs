@@ -1,10 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////////////////////////
-// file:	IMstDataRepository.cs
-//
-// summary:	Implements the mst data repository class
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-namespace MstInfra.Data.Core
+namespace SimpleInfra.Data.Core
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +13,7 @@ namespace MstInfra.Data.Core
     ///
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public interface SimpleDataRepository<T> : IDisposable where T : class
+    public interface ISimpleDataRepository<T> : IDisposable where T : class
     {
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets or sets a value indicating whether the log error. </summary>
