@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
         <id>SimpleInfra.Data.dll</id>
-        <version>1.0.0.0</version>
+        <version>1.2.0.0</version>
         <authors>mustafa sacli</authors>
         <owners>mustafa sacli</owners>
         <projectUrl>https://github.com/mustafasacli/SimpleInfraRepository</projectUrl>
         <license type="expression">Apache-2.0</license>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <releaseNotes>First Release.</releaseNotes>
+        <releaseNotes>Documentation added. Assembly signed.</releaseNotes>
         <description>Supports EF operations.</description>
         <copyright>Copyright ©2019 Msacli Corporation</copyright>
         <tags>IDbRepository EF ORM DbContext</tags>

@@ -36,17 +36,27 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Specialised constructor for use only by derived class. </summary>
         ///
-        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        /// <remarks>   Mustafa SAÇLI, 5.05.2019. </remarks>
         ///
         /// <param name="dbContext">        Context for the database. </param>
+        /// <param name="simpleRepoLogger"> (Optional) The simple repo logger. </param>
         /// <param name="errorLogEnable">   (Optional) True if error log enable. </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        protected SimpleBaseDataRepository(DbContext dbContext, bool errorLogEnable = true)
+        protected SimpleBaseDataRepository(DbContext dbContext, ISimpleRepoLogger simpleRepoLogger = null, bool errorLogEnable = true)
         {
             this.LogError = errorLogEnable;
             this.dbContext = dbContext;
             dbSet = dbContext.Set<T>();
+            this.SimpleRepoLogger = simpleRepoLogger;
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets the simple repo logger. </summary>
+        ///
+        /// <value> The simple repo logger. </value>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public ISimpleRepoLogger SimpleRepoLogger
+        { get; protected set; }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets or sets a value indicating whether the log error. </summary>
@@ -75,11 +85,11 @@ namespace SimpleInfra.Data
         #region IRepository Members
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Includes the given file. </summary>
+        /// <summary>   Includes the given entity type name. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
-        /// <param name="path"> Full pathname of the file. </param>
+        /// <param name="path"> Full path name of the entity type name. </param>
         ///
         /// <returns>   An IQueryable&lt;T&gt; </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,12 +99,12 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Includes the given file. </summary>
+        /// <summary>   Includes the given entity property. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
         /// <typeparam name="TProperty">    Type of the property. </typeparam>
-        /// <param name="path"> Full pathname of the file. </param>
+        /// <param name="path"> Full path name of the entity. </param>
         ///
         /// <returns>   An IQueryable&lt;T&gt; </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -264,7 +274,7 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Firsts the given predicate. </summary>
+        /// <summary>   Get First the given predicate. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
@@ -278,7 +288,7 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   First or default. </summary>
+        /// <summary>   Get First or default. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
@@ -306,7 +316,7 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Anies the given predicate. </summary>
+        /// <summary>   Has any with the given predicate. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
@@ -332,7 +342,7 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Adds a range. </summary>
+        /// <summary>   Adds an entity range. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
@@ -458,9 +468,13 @@ namespace SimpleInfra.Data
                 /// Exception logging
                 try
                 {
-                    if (this.LogError) { }
-                    /// KykFileLogger.LogError(dve);
+                    if (this.LogError)
+                    {
+                        this.SimpleRepoLogger?.Error(dve);
+                    }
                 }
+                catch
+                { }
                 finally
                 { }
 
@@ -469,9 +483,11 @@ namespace SimpleInfra.Data
                     if (this.LogError)
                     {
                         var errors = GetValidationErrors(dve);
-                        /// KykFileLogger.LogError(errors.ToArray());
+                        this.SimpleRepoLogger?.Error(errors.ToArray());
                     }
                 }
+                catch
+                { }
                 finally
                 { }
 
@@ -479,11 +495,13 @@ namespace SimpleInfra.Data
             }
             catch (Exception e)
             {
-                /// Exception logging
                 try
                 {
-                    if (this.LogError) { }
-                    /// KykFileLogger.LogError(e);
+                    if (this.LogError)
+                    {
+                        /// Exception logging
+                        this.SimpleRepoLogger?.Error(e);
+                    }
                 }
                 finally
                 { }
@@ -554,6 +572,7 @@ namespace SimpleInfra.Data
         protected List<string> GetValidationErrors(DbEntityValidationException ex)
         {
             var errorMessages = new List<string>();
+
             try
             {
                 foreach (DbEntityValidationResult validationResult in ex.EntityValidationErrors)
@@ -567,8 +586,10 @@ namespace SimpleInfra.Data
             }
             catch (Exception e)
             {
-                /// KykFileLogger.LogError(e);
+                /// Exception logging
+                this.SimpleRepoLogger?.Error(e);
             }
+
             return errorMessages;
         }
     }
