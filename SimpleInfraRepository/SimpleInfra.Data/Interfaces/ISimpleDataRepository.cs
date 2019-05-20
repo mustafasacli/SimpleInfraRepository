@@ -71,7 +71,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   An IQueryable&lt;T&gt; </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets all. </summary>
@@ -80,7 +80,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   An IQueryable&lt;T&gt; </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        IQueryable<T> GetAll(Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetAll(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets with page. </summary>
@@ -97,7 +97,7 @@ namespace SimpleInfra.Data
         IQueryable<T> GetWithPage<TKey>(Expression<Func<T, bool>> predicate,
             Expression<Func<T, TKey>> keySelectorForOrder = null,
             bool isOrderByDesc = false,
-            uint pageNumber = 1, uint pageItemCount = 1);
+            uint pageNumber = 1, uint pageItemCount = 1, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets all with page. </summary>
@@ -113,7 +113,7 @@ namespace SimpleInfra.Data
         IQueryable<T> GetAllWithPage<TKey>(
             Expression<Func<T, TKey>> keySelectorForOrder = null,
             bool isOrderByDesc = false,
-            uint pageNumber = 1, uint pageItemCount = 1);
+            uint pageNumber = 1, uint pageItemCount = 1, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets a t using the given predicate. </summary>
@@ -122,7 +122,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        T Get(Expression<Func<T, bool>> predicate);
+        T Get(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Get First the given predicate. </summary>
@@ -131,7 +131,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        T First(Expression<Func<T, bool>> predicate);
+        T First(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Get First or default. </summary>
@@ -140,7 +140,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        T FirstOrDefault(Expression<Func<T, bool>> predicate);
+        T FirstOrDefault(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Counts the given predicate. </summary>

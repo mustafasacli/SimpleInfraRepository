@@ -120,9 +120,19 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   all. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual IQueryable<T> GetAll()
+        public virtual IQueryable<T> GetAll(bool asNoTracking = false)
         {
-            var iq = dbSet.AsNoTracking();
+            IQueryable<T> iq = null;
+
+            if (asNoTracking)
+            {
+                iq = dbSet
+                        .AsNoTracking();
+            }
+            else
+            {
+                iq = dbSet;
+            }
 
             return iq;
         }
@@ -136,11 +146,21 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   all. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> predicate)
+        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
         {
-            var iq = dbSet
-                .AsNoTracking()
-                .Where(predicate);
+            IQueryable<T> iq = null;
+
+            if (asNoTracking)
+            {
+                iq = dbSet
+                        .AsNoTracking()
+                        .Where(predicate);
+            }
+            else
+            {
+                iq = dbSet
+                        .Where(predicate);
+            }
 
             return iq;
         }
@@ -162,14 +182,23 @@ namespace SimpleInfra.Data
         public virtual IQueryable<T> GetWithPage<TKey>(Expression<Func<T, bool>> predicate,
             Expression<Func<T, TKey>> keySelectorForOrder = null,
             bool isOrderByDesc = false,
-            uint pageNumber = 1, uint pageItemCount = 1)
+            uint pageNumber = 1, uint pageItemCount = 1, bool asNoTracking = false)
         {
             uint pageNo = pageNumber < 1 ? 1 : pageNumber;
             uint itemCount = pageItemCount < 1 ? 1 : pageItemCount;
 
-            var iq = dbSet
-            .AsNoTracking()
-            .Where(predicate);
+            IQueryable<T> iq = null;
+            if (asNoTracking)
+            {
+                iq = dbSet
+                        .AsNoTracking()
+                        .Where(predicate);
+            }
+            else
+            {
+                iq = dbSet
+                        .Where(predicate);
+            }
 
             if (keySelectorForOrder != null)
             {
@@ -200,14 +229,21 @@ namespace SimpleInfra.Data
         public virtual IQueryable<T> GetAllWithPage<TKey>(
             Expression<Func<T, TKey>> keySelectorForOrder = null,
             bool isOrderByDesc = false,
-            uint pageNumber = 1, uint pageItemCount = 1)
+            uint pageNumber = 1, uint pageItemCount = 1, bool asNoTracking = false)
         {
             uint pageNo = pageNumber < 1 ? 1 : pageNumber;
             uint itemCount = pageItemCount < 1 ? 1 : pageItemCount;
 
-            var iq = dbSet
-            .AsNoTracking()
-            .AsQueryable();
+            IQueryable<T> iq = null;
+            if (asNoTracking)
+            {
+                iq = dbSet
+                        .AsNoTracking();
+            }
+            else
+            {
+                iq = dbSet;
+            }
 
             if (keySelectorForOrder != null)
             {
@@ -231,12 +267,25 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A T instance. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual T Get(Expression<Func<T, bool>> predicate)
+        public virtual T Get(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
         {
-            return dbSet
-                .Where(predicate)
+            T instance = null;
+
+            if (asNoTracking)
+            {
+                instance = dbSet
+                        .Where(predicate)
                 .AsNoTracking()
                 .SingleOrDefault();
+            }
+            else
+            {
+                instance = dbSet
+                        .Where(predicate)
+                .SingleOrDefault();
+            }
+
+            return instance;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -282,9 +331,23 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A T instance. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual T First(Expression<Func<T, bool>> predicate)
+        public virtual T First(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
         {
-            return dbSet.First(predicate);
+            T instance = null;
+
+            if (asNoTracking)
+            {
+                instance = dbSet
+                    .AsNoTracking()
+                    .First(predicate);
+            }
+            else
+            {
+                instance = dbSet
+                    .First(predicate);
+            }
+
+            return instance;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -296,9 +359,23 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A T instance. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual T FirstOrDefault(Expression<Func<T, bool>> predicate)
+        public virtual T FirstOrDefault(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
         {
-            return dbSet.FirstOrDefault(predicate);
+            T instance = null;
+
+            if (asNoTracking)
+            {
+                instance = dbSet
+                    .AsNoTracking()
+                    .FirstOrDefault(predicate);
+            }
+            else
+            {
+                instance = dbSet
+                    .FirstOrDefault(predicate);
+            }
+
+            return instance;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -465,7 +542,7 @@ namespace SimpleInfra.Data
             }
             catch (DbEntityValidationException dve)
             {
-                /// Exception logging
+                // Exception logging
                 try
                 {
                     if (this.LogError)
@@ -499,7 +576,7 @@ namespace SimpleInfra.Data
                 {
                     if (this.LogError)
                     {
-                        /// Exception logging
+                        // Exception logging
                         this.SimpleRepoLogger?.Error(e);
                     }
                 }
@@ -586,7 +663,7 @@ namespace SimpleInfra.Data
             }
             catch (Exception e)
             {
-                /// Exception logging
+                // Exception logging
                 this.SimpleRepoLogger?.Error(e);
             }
 

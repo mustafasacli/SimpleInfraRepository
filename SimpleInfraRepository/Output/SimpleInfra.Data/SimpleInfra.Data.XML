@@ -46,19 +46,19 @@
             
              <returns>   An IQueryable&lt;T&gt; </returns>
         </member>
-        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetAll">
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetAll(System.Boolean)">
              <summary>   Gets all. </summary>
             
              <returns>   An IQueryable&lt;T&gt; </returns>
         </member>
-        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Gets all. </summary>
             
              <param name="predicate">    The predicate. </param>
             
              <returns>   An IQueryable&lt;T&gt; </returns>
         </member>
-        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32)">
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
              <summary>   Gets with page. </summary>
             
              <typeparam name="TKey"> Type of the key. </typeparam>
@@ -70,7 +70,7 @@
             
              <returns>   The with page. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetAllWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32)">
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetAllWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
              <summary>   Gets all with page. </summary>
             
              <typeparam name="TKey"> Type of the key. </typeparam>
@@ -81,21 +81,21 @@
             
              <returns>   all with page. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Get(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Get(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Gets a t using the given predicate. </summary>
             
              <param name="predicate">    The predicate. </param>
             
              <returns>   A T. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Get First the given predicate. </summary>
             
              <param name="predicate">    The predicate. </param>
             
              <returns>   A T. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Get First or default. </summary>
             
              <param name="predicate">    The predicate. </param>
@@ -261,14 +261,14 @@
             
              <returns>   An IQueryable&lt;T&gt; </returns>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAll">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAll(System.Boolean)">
              <summary>   Gets all. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <returns>   all. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Gets all. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
@@ -277,7 +277,7 @@
             
              <returns>   all. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32)">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
              <summary>   Gets with page. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
@@ -291,7 +291,7 @@
             
              <returns>   The with page. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAllWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32)">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAllWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
              <summary>   Gets all with page. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
@@ -304,7 +304,7 @@
             
              <returns>   all with page. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Get(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Get(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Gets a t using the given predicate. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
@@ -331,7 +331,7 @@
             
              <returns>   True if it succeeds, false if it fails. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Get First the given predicate. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
@@ -340,7 +340,7 @@
             
              <returns>   A T instance. </returns>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Get First or default. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
