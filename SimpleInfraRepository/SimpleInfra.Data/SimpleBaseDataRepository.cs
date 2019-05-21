@@ -41,13 +41,22 @@ namespace SimpleInfra.Data
         /// <param name="dbContext">        Context for the database. </param>
         /// <param name="simpleRepoLogger"> (Optional) The simple repo logger. </param>
         /// <param name="errorLogEnable">   (Optional) True if error log enable. </param>
+        /// <param name="lazyLoadingEnabled">   (Optional) True if Lazy Load enable. </param>
+        /// <param name="autoDetectChangesEnabled">   (Optional) True if Auto Detect Changes Enabled. </param>
+        /// <param name="proxyCreationEnabled">   (Optional) True if Proxy Creation Enabled. </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        protected SimpleBaseDataRepository(DbContext dbContext, ISimpleRepoLogger simpleRepoLogger = null, bool errorLogEnable = true)
+        protected SimpleBaseDataRepository(
+            DbContext dbContext, ISimpleRepoLogger simpleRepoLogger = null, bool errorLogEnable = true,
+            bool lazyLoadingEnabled=false,bool autoDetectChangesEnabled = false,bool proxyCreationEnabled = false)
         {
             this.LogError = errorLogEnable;
             this.dbContext = dbContext;
             dbSet = dbContext.Set<T>();
             this.SimpleRepoLogger = simpleRepoLogger;
+
+            this.dbContext.Configuration.LazyLoadingEnabled = lazyLoadingEnabled;
+            this.dbContext.Configuration.AutoDetectChangesEnabled = autoDetectChangesEnabled;
+            this.dbContext.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
