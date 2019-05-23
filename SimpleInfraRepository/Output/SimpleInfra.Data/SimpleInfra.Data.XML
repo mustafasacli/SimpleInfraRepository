@@ -213,7 +213,7 @@
             Set the database belongs to.
             </summary>
         </member>
-        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.#ctor(System.Data.Entity.DbContext,SimpleInfra.Data.ISimpleRepoLogger,System.Boolean)">
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.#ctor(System.Data.Entity.DbContext,SimpleInfra.Data.ISimpleRepoLogger,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
              <summary>   Specialised constructor for use only by derived class. </summary>
             
              <remarks>   Mustafa SAÇLI, 5.05.2019. </remarks>
@@ -221,6 +221,9 @@
              <param name="dbContext">        Context for the database. </param>
              <param name="simpleRepoLogger"> (Optional) The simple repo logger. </param>
              <param name="errorLogEnable">   (Optional) True if error log enable. </param>
+             <param name="lazyLoadingEnabled">   (Optional) True if Lazy Load enable. </param>
+             <param name="autoDetectChangesEnabled">   (Optional) True if Auto Detect Changes Enabled. </param>
+             <param name="proxyCreationEnabled">   (Optional) True if Proxy Creation Enabled. </param>
         </member>
         <member name="P:SimpleInfra.Data.SimpleBaseDataRepository`1.SimpleRepoLogger">
              <summary>   Gets the simple repo logger. </summary>
