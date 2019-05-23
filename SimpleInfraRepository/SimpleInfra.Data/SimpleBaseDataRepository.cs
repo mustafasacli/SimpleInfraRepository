@@ -47,7 +47,7 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         protected SimpleBaseDataRepository(
             DbContext dbContext, ISimpleRepoLogger simpleRepoLogger = null, bool errorLogEnable = true,
-            bool lazyLoadingEnabled=false,bool autoDetectChangesEnabled = false,bool proxyCreationEnabled = false)
+            bool lazyLoadingEnabled = false, bool autoDetectChangesEnabled = false, bool proxyCreationEnabled = false)
         {
             this.LogError = errorLogEnable;
             this.dbContext = dbContext;
@@ -541,7 +541,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   An int. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public int SaveChanges()
+        public virtual int SaveChanges()
         {
             var result = -1;
 
