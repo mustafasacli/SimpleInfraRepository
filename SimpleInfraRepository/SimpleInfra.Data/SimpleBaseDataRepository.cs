@@ -401,7 +401,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   True if it succeeds, false if it fails. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public bool Any(Expression<Func<T, bool>> predicate)
+        public virtual bool Any(Expression<Func<T, bool>> predicate)
         {
             return dbSet.Any(predicate);
         }
@@ -437,7 +437,7 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public T Create()
+        public virtual T Create()
         {
             return dbSet.Create<T>();
         }
