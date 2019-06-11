@@ -55,6 +55,7 @@
              <summary>   Gets all. </summary>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   An IQueryable&lt;T&gt; </returns>
         </member>
@@ -67,6 +68,7 @@
              <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
              <param name="pageNumber">           (Optional) The page number. </param>
              <param name="pageItemCount">        (Optional) Number of page items. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   The with page. </returns>
         </member>
@@ -78,6 +80,7 @@
              <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
              <param name="pageNumber">           (Optional) The page number. </param>
              <param name="pageItemCount">        (Optional) Number of page items. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   all with page. </returns>
         </member>
@@ -85,6 +88,7 @@
              <summary>   Gets a t using the given predicate. </summary>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   A T. </returns>
         </member>
@@ -92,6 +96,7 @@
              <summary>   Get First the given predicate. </summary>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   A T. </returns>
         </member>
@@ -99,6 +104,7 @@
              <summary>   Get First or default. </summary>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   A T. </returns>
         </member>
@@ -149,6 +155,31 @@
             
              <returns>   A DbSqlQuery&lt;T&gt; </returns>
         </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.ExecuteSqlCommand(System.String,System.Object[])">
+            <summary>
+                Executes the given DDL/DML command against the database. As with any API that
+                accepts SQL it is important to parameterize any user input to protect against
+                a SQL injection attack. You can include parameter place holders in the SQL query
+                string and then supply parameter values as additional arguments. Any parameter
+                values you supply will automatically be converted to a DbParameter.
+            </summary>
+            <param name="sql">The command string.</param>
+            <param name="parameters">The parameters to apply to the command string.</param>
+            <returns> The result returned by the database after executing the command.</returns>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior,System.String,System.Object[])">
+            <summary>
+                Executes the given DDL/DML command against the database. As with any API that
+                accepts SQL it is important to parameterize any user input to protect against
+                a SQL injection attack. You can include parameter place holders in the SQL query
+                string and then supply parameter values as additional arguments. Any parameter
+                values you supply will automatically be converted to a DbParameter.
+            </summary>
+            <param name="transactionalBehavior"> TransactionalBehavior parameter. </param>
+            <param name="sql">The command string.</param>
+            <param name="parameters">The parameters to apply to the command string.</param>
+            <returns> The result returned by the database after executing the command.</returns>
+        </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.SqlQuery``1(System.String,System.Object[])">
              <summary>   SQL query. </summary>
             
@@ -158,12 +189,26 @@
             
              <returns>   A DbRawSqlQuery&lt;TElement&gt; </returns>
         </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.SqlQuery(System.Type,System.String,System.Object[])">
+             <summary>   SQL query. </summary>
+            
+             <param name="elementType">          The Element Type. </param>
+             <param name="sql">          The SQL. </param>
+             <param name="parameters">   A variable-length parameters list containing parameters. </param>
+            
+             <returns>   A DbRawSqlQuery </returns>
+        </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetById(System.Object)">
              <summary>   Gets by id. </summary>
             
              <param name="oid">  The oid. </param>
             
              <returns>   The by id. </returns>
+        </member>
+        <member name="T:SimpleInfra.Data.ISimpleRepoLogger">
+            <summary>
+            Interface for logging operations.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Data.ISimpleRepoLogger.Error(System.Exception,System.String[])">
              <summary>   Log Errors. </summary>
@@ -277,6 +322,7 @@
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   all. </returns>
         </member>
@@ -291,6 +337,7 @@
              <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
              <param name="pageNumber">           (Optional) The page number. </param>
              <param name="pageItemCount">        (Optional) Number of page items. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   The with page. </returns>
         </member>
@@ -304,6 +351,7 @@
              <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
              <param name="pageNumber">           (Optional) The page number. </param>
              <param name="pageItemCount">        (Optional) Number of page items. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   all with page. </returns>
         </member>
@@ -313,6 +361,7 @@
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   A T instance. </returns>
         </member>
@@ -340,6 +389,7 @@
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   A T instance. </returns>
         </member>
@@ -349,6 +399,7 @@
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   A T instance. </returns>
         </member>
@@ -402,6 +453,17 @@
             
              <returns>   A DbRawSqlQuery&lt;TElement&gt; </returns>
         </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.SqlQuery(System.Type,System.String,System.Object[])">
+             <summary>   SQL query. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <param name="elementType"> Type of the element. </param>
+             <param name="sql">          The SQL. </param>
+             <param name="parameters">   A variable-length parameters list containing parameters. </param>
+            
+             <returns>   A DbRawSqlQuery </returns>
+        </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.SqlSetQuery(System.String,System.Object[])">
              <summary>   SQL set query. </summary>
             
@@ -411,6 +473,31 @@
              <param name="parameters">   A variable-length parameters list containing parameters. </param>
             
              <returns>   A DbSqlQuery&lt;T&gt; </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.ExecuteSqlCommand(System.String,System.Object[])">
+            <summary>
+                Executes the given DDL/DML command against the database. As with any API that
+                accepts SQL it is important to parameterize any user input to protect against
+                a SQL injection attack. You can include parameter place holders in the SQL query
+                string and then supply parameter values as additional arguments. Any parameter
+                values you supply will automatically be converted to a DbParameter.
+            </summary>
+            <param name="sql">The command string.</param>
+            <param name="parameters">The parameters to apply to the command string.</param>
+            <returns> The result returned by the database after executing the command.</returns>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior,System.String,System.Object[])">
+            <summary>
+                Executes the given DDL/DML command against the database. As with any API that
+                accepts SQL it is important to parameterize any user input to protect against
+                a SQL injection attack. You can include parameter place holders in the SQL query
+                string and then supply parameter values as additional arguments. Any parameter
+                values you supply will automatically be converted to a DbParameter.
+            </summary>
+            <param name="transactionalBehavior"> TransactionalBehavior parameter. </param>
+            <param name="sql">The command string.</param>
+            <param name="parameters">The parameters to apply to the command string.</param>
+            <returns> The result returned by the database after executing the command.</returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Update(`0)">
              <summary>   Updates the given entity. </summary>
