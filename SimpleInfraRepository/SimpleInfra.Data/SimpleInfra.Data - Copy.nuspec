@@ -2,13 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
         <id>SimpleInfra.Data.dll</id>
-        <version>1.5.0.0</version>
+        <version>1.4.0.0</version>
         <authors>mustafa sacli</authors>
         <owners>mustafa sacli</owners>
         <projectUrl>https://github.com/mustafasacli/SimpleInfraRepository</projectUrl>
         <license type="expression">Apache-2.0</license>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <releaseNotes>SqlQuery, ExecuteSqlCommand improvements added.</releaseNotes>
+        <releaseNotes>Added virtual key to Any, Create and SaveChanges methods. 
+LazyLoadingEnabled, AutoDetectChangesEnabled, ProxyCreationEnabled options added.</releaseNotes>
         <description>Supports EF operations.</description>
         <copyright>Copyright ©2019 Msacli Corporation</copyright>
         <tags>IDbRepository EF ORM DbContext</tags>

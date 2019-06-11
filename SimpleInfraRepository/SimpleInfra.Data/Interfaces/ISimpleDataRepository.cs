@@ -2,6 +2,7 @@ namespace SimpleInfra.Data
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
     using System.Linq.Expressions;
@@ -77,6 +78,7 @@ namespace SimpleInfra.Data
         /// <summary>   Gets all. </summary>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   An IQueryable&lt;T&gt; </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,6 +93,7 @@ namespace SimpleInfra.Data
         /// <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
         /// <param name="pageNumber">           (Optional) The page number. </param>
         /// <param name="pageItemCount">        (Optional) Number of page items. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   The with page. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,6 +110,7 @@ namespace SimpleInfra.Data
         /// <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
         /// <param name="pageNumber">           (Optional) The page number. </param>
         /// <param name="pageItemCount">        (Optional) Number of page items. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   all with page. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,6 +123,7 @@ namespace SimpleInfra.Data
         /// <summary>   Gets a t using the given predicate. </summary>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,6 +133,7 @@ namespace SimpleInfra.Data
         /// <summary>   Get First the given predicate. </summary>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,6 +143,7 @@ namespace SimpleInfra.Data
         /// <summary>   Get First or default. </summary>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -205,6 +212,31 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         DbSqlQuery<T> SqlSetQuery(string sql, params object[] parameters);
 
+        /// <summary>
+        ///     Executes the given DDL/DML command against the database. As with any API that
+        ///     accepts SQL it is important to parameterize any user input to protect against
+        ///     a SQL injection attack. You can include parameter place holders in the SQL query
+        ///     string and then supply parameter values as additional arguments. Any parameter
+        ///     values you supply will automatically be converted to a DbParameter.
+        /// </summary>
+        /// <param name="sql">The command string.</param>
+        /// <param name="parameters">The parameters to apply to the command string.</param>
+        /// <returns> The result returned by the database after executing the command.</returns>
+        int ExecuteSqlCommand(string sql, params object[] parameters);
+
+        /// <summary>
+        ///     Executes the given DDL/DML command against the database. As with any API that
+        ///     accepts SQL it is important to parameterize any user input to protect against
+        ///     a SQL injection attack. You can include parameter place holders in the SQL query
+        ///     string and then supply parameter values as additional arguments. Any parameter
+        ///     values you supply will automatically be converted to a DbParameter.
+        /// </summary>
+        /// <param name="transactionalBehavior"> TransactionalBehavior parameter. </param>
+        /// <param name="sql">The command string.</param>
+        /// <param name="parameters">The parameters to apply to the command string.</param>
+        /// <returns> The result returned by the database after executing the command.</returns>
+        int ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters);
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   SQL query. </summary>
         ///
@@ -215,6 +247,17 @@ namespace SimpleInfra.Data
         /// <returns>   A DbRawSqlQuery&lt;TElement&gt; </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         DbRawSqlQuery<TElement> SqlQuery<TElement>(string sql, params object[] parameters) where TElement : class;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   SQL query. </summary>
+        ///
+        /// <param name="elementType">          The Element Type. </param>
+        /// <param name="sql">          The SQL. </param>
+        /// <param name="parameters">   A variable-length parameters list containing parameters. </param>
+        ///
+        /// <returns>   A DbRawSqlQuery </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        DbRawSqlQuery SqlQuery(Type elementType, string sql, params object[] parameters);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets by id. </summary>

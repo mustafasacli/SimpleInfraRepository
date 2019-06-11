@@ -3,6 +3,9 @@
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Interface for logging operations.
+    /// </summary>
     public interface ISimpleRepoLogger
     {
         ////////////////////////////////////////////////////////////////////////////////////////////////////

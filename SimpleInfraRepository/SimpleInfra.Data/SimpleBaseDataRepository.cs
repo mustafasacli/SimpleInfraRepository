@@ -51,7 +51,7 @@ namespace SimpleInfra.Data
         {
             this.LogError = errorLogEnable;
             this.dbContext = dbContext;
-            dbSet = dbContext.Set<T>();
+            this.dbSet = dbContext.Set<T>();
             this.SimpleRepoLogger = simpleRepoLogger;
 
             this.dbContext.Configuration.LazyLoadingEnabled = lazyLoadingEnabled;
@@ -152,6 +152,7 @@ namespace SimpleInfra.Data
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   all. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,6 +186,7 @@ namespace SimpleInfra.Data
         /// <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
         /// <param name="pageNumber">           (Optional) The page number. </param>
         /// <param name="pageItemCount">        (Optional) Number of page items. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   The with page. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,6 +234,7 @@ namespace SimpleInfra.Data
         /// <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
         /// <param name="pageNumber">           (Optional) The page number. </param>
         /// <param name="pageItemCount">        (Optional) Number of page items. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   all with page. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -273,6 +276,7 @@ namespace SimpleInfra.Data
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   A T instance. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -337,6 +341,7 @@ namespace SimpleInfra.Data
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   A T instance. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -365,6 +370,7 @@ namespace SimpleInfra.Data
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
         /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
         ///
         /// <returns>   A T instance. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -468,6 +474,22 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   SQL query. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <param name="elementType"> Type of the element. </param>
+        /// <param name="sql">          The SQL. </param>
+        /// <param name="parameters">   A variable-length parameters list containing parameters. </param>
+        ///
+        /// <returns>   A DbRawSqlQuery </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public virtual DbRawSqlQuery SqlQuery(Type elementType, string sql, params object[] parameters)
+        {
+            return dbContext.Database.SqlQuery(elementType: elementType, sql: sql, parameters: parameters);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   SQL set query. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
@@ -480,6 +502,45 @@ namespace SimpleInfra.Data
         public virtual DbSqlQuery<T> SqlSetQuery(string sql, params object[] parameters)
         {
             return dbSet.SqlQuery(sql: sql, parameters: parameters);
+        }
+
+        /// <summary>
+        ///     Executes the given DDL/DML command against the database. As with any API that
+        ///     accepts SQL it is important to parameterize any user input to protect against
+        ///     a SQL injection attack. You can include parameter place holders in the SQL query
+        ///     string and then supply parameter values as additional arguments. Any parameter
+        ///     values you supply will automatically be converted to a DbParameter.
+        /// </summary>
+        /// <param name="sql">The command string.</param>
+        /// <param name="parameters">The parameters to apply to the command string.</param>
+        /// <returns> The result returned by the database after executing the command.</returns>
+        public int ExecuteSqlCommand(string sql, params object[] parameters)
+        {
+            var result = -1;
+
+            result = dbContext.Database.ExecuteSqlCommand(sql: sql, parameters: parameters);
+
+            return result;
+        }
+
+        /// <summary>
+        ///     Executes the given DDL/DML command against the database. As with any API that
+        ///     accepts SQL it is important to parameterize any user input to protect against
+        ///     a SQL injection attack. You can include parameter place holders in the SQL query
+        ///     string and then supply parameter values as additional arguments. Any parameter
+        ///     values you supply will automatically be converted to a DbParameter.
+        /// </summary>
+        /// <param name="transactionalBehavior"> TransactionalBehavior parameter. </param>
+        /// <param name="sql">The command string.</param>
+        /// <param name="parameters">The parameters to apply to the command string.</param>
+        /// <returns> The result returned by the database after executing the command.</returns>
+        public int ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters)
+        {
+            var result = -1;
+
+            result = dbContext.Database.ExecuteSqlCommand(transactionalBehavior: transactionalBehavior, sql: sql, parameters: parameters);
+
+            return result;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
