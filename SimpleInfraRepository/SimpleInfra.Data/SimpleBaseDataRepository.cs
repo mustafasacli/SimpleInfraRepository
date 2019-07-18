@@ -335,6 +335,40 @@ namespace SimpleInfra.Data
             return oid == null || oid == (object)DBNull.Value;
         }
 
+        /// <summary>
+        ///  Finds an entity with the given primary key values. If an entity with the given
+        ///     primary key values exists in the context, then it is returned immediately without
+        ///     making a request to the store. Otherwise, a request is made to the store for
+        ///     an entity with the given primary key values and this entity, if found, is attached
+        ///     to the context and returned. If no entity is found in the context or the store,
+        ///     then null is returned.
+        /// </summary>
+        /// <remarks> 
+        /// The ordering of composite key values is as defined in the EDM, which is in turn
+        ///     as defined in the designer, by the Code First fluent API, or by the DataMember
+        ///     attribute.
+        /// </remarks>
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown if multiple entities exist in the context with the primary key values given.
+        /// </exception>
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown if the type of entity is not part of the data model for this context.
+        /// </exception>
+        /// <exception cref="System.InvalidOperationException">
+        ///  Thrown if the types of the key values do not match the types of the key values
+        ///     for the entity type to be found.
+        /// </exception>
+        /// <exception cref="System.InvalidOperationException">
+        ///  Thrown if the context has been disposed.
+        /// </exception>
+        /// <param name="keyValues">The values of the primary key for the entity to be found.</param>
+        /// <returns>The entity found, or null.</returns>
+        public virtual T Find(params object[] keyValues)
+        {
+            var entity = dbSet.Find(keyValues);
+            return entity;
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Get First the given predicate. </summary>
         ///
@@ -434,11 +468,11 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Adds an entity range. </summary>
+        /// <summary>   Adds entity. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
-        /// <param name="entities"> An IEnumerable&lt;T&gt; of items to append to this. </param>
+        /// <param name="entities">   The entity to add. </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public virtual void AddRange(IEnumerable<T> entities)
         {
