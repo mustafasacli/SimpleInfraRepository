@@ -103,6 +103,26 @@ namespace SimpleInfra.Data
             uint pageNumber = 1, uint pageItemCount = 1, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets with skip and take. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <typeparam name="TKey"> Type of the key. </typeparam>
+        /// <param name="predicate">            The predicate. </param>
+        /// <param name="keySelectorForOrder">  (Optional) The key selector for order. </param>
+        /// <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
+        /// <param name="skip">           (Optional) Item count for skip. </param>
+        /// <param name="take">        (Optional) Item count for take. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   The with page. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        IQueryable<T> GetWithSkipAndTake<TKey>(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, TKey>> keySelectorForOrder = null,
+            bool isOrderByDesc = false,
+            uint skip = 1, uint take = 1, bool asNoTracking = false);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets all with page. </summary>
         ///
         /// <typeparam name="TKey"> Type of the key. </typeparam>
@@ -128,6 +148,29 @@ namespace SimpleInfra.Data
         /// <returns>   A T. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         T Get(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets a t using the given predicate. </summary>
+        ///
+        /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   A T. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        T Single(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets a t using the given predicate. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   A T instance. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        T SingleOrDefault(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Get First the given predicate. </summary>
@@ -188,6 +231,12 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void Update(T entity);
 
+        /// <summary>
+        /// Update entity array.
+        /// </summary>
+        /// <param name="entities">entity array</param>
+        void UpdateRange(IEnumerable<T> entities);
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Deletes the given oid. </summary>
         ///
@@ -201,6 +250,12 @@ namespace SimpleInfra.Data
         /// <param name="oid">  The oid. </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void Delete(object oid);
+
+        /// <summary>
+        /// Delete entity array.
+        /// </summary>
+        /// <param name="entities"> entity array</param>
+        void DeleteRange(IEnumerable<T> entities);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   SQL set query. </summary>

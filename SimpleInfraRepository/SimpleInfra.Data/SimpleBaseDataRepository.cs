@@ -8,11 +8,13 @@ namespace SimpleInfra.Data
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Common;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Validation;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Threading.Tasks;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   A simple base data repository. </summary>
@@ -59,6 +61,8 @@ namespace SimpleInfra.Data
             this.dbContext.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }
 
+        #region [ public properties ]
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets the simple repo logger. </summary>
         ///
@@ -90,6 +94,24 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public bool LogDebug
         { get; set; }
+
+        #endregion
+
+        #region [ protected properties ]
+
+        /// <summary>
+        /// Database Context.
+        /// </summary>
+        protected DbContext Context
+        { get { return dbContext; } }
+
+        /// <summary>
+        /// Database Connection.
+        /// </summary>
+        protected DbConnection Connection
+        { get { return dbContext.Database.Connection; } }
+
+        #endregion
 
         #region IRepository Members
 
@@ -225,6 +247,55 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets with skip and take. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <typeparam name="TKey"> Type of the key. </typeparam>
+        /// <param name="predicate">            The predicate. </param>
+        /// <param name="keySelectorForOrder">  (Optional) The key selector for order. </param>
+        /// <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
+        /// <param name="skip">           (Optional) Item count for skip. </param>
+        /// <param name="take">        (Optional) Item count for take. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   The with page. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public virtual IQueryable<T> GetWithSkipAndTake<TKey>(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, TKey>> keySelectorForOrder = null,
+            bool isOrderByDesc = false,
+            uint skip = 1, uint take = 1, bool asNoTracking = false)
+        {
+            uint skipCount = skip < 1 ? 1 : skip;
+            uint takeCount = take < 1 ? 1 : take;
+
+            IQueryable<T> iq = null;
+            if (asNoTracking)
+            {
+                iq = dbSet
+                        .AsNoTracking()
+                        .Where(predicate);
+            }
+            else
+            {
+                iq = dbSet
+                        .Where(predicate);
+            }
+
+            if (keySelectorForOrder != null)
+            {
+                iq = isOrderByDesc ?
+                    iq.OrderByDescending(keySelectorForOrder) : iq.OrderBy(keySelectorForOrder);
+            }
+
+            var result = iq
+                .Skip((int)skipCount)
+                .Take((int)takeCount);
+
+            return result;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets all with page. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
@@ -281,6 +352,68 @@ namespace SimpleInfra.Data
         /// <returns>   A T instance. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public virtual T Get(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
+        {
+            T instance = null;
+
+            if (asNoTracking)
+            {
+                instance = dbSet
+                        .Where(predicate)
+                .AsNoTracking()
+                .SingleOrDefault();
+            }
+            else
+            {
+                instance = dbSet
+                        .Where(predicate)
+                .SingleOrDefault();
+            }
+
+            return instance;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets a t using the given predicate. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   A T instance. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public virtual T Single(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
+        {
+            T instance = null;
+
+            if (asNoTracking)
+            {
+                instance = dbSet
+                        .Where(predicate)
+                .AsNoTracking()
+                .Single();
+            }
+            else
+            {
+                instance = dbSet
+                        .Where(predicate)
+                .Single();
+            }
+
+            return instance;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets a t using the given predicate. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   A T instance. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public virtual T SingleOrDefault(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
         {
             T instance = null;
 
@@ -590,6 +723,22 @@ namespace SimpleInfra.Data
             dbContext.Entry(entity).State = EntityState.Modified;
         }
 
+        /// <summary>
+        /// Delete entity array.
+        /// </summary>
+        /// <param name="entities"> entity array</param>
+        /// <returns>IEnumrable entity</returns>
+        public virtual void UpdateRange(IEnumerable<T> entities)
+        {
+            if (entities == null || entities.Count() < 1)
+                return;
+
+            foreach (var entity in entities)
+            {
+                Update(entity);
+            }
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Deletes the given oid. </summary>
         ///
@@ -604,6 +753,18 @@ namespace SimpleInfra.Data
 
             dbSet.Remove(entity);
             dbContext.Entry(entity).State = EntityState.Deleted;
+        }
+
+        /// <summary>
+        /// Delete entity array.
+        /// </summary>
+        /// <param name="entities"> entity array</param>
+        public virtual void DeleteRange(IEnumerable<T> entities)
+        {
+            if (entities == null || entities.Count() < 1)
+                return;
+
+            dbSet.RemoveRange(entities);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////

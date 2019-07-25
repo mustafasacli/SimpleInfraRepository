@@ -17,7 +17,7 @@ namespace SimpleInfra.Data.ConsoleApp1
                 var files = repo
                     .GetAll(q => q.Id > 100)
                     .ToList() ?? new List<PersonalFile>();
-
+                
                 foreach (var item in files)
                 {
                     Console.WriteLine(item.ToString());

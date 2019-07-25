@@ -72,6 +72,21 @@
             
              <returns>   The with page. </returns>
         </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetWithSkipAndTake``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
+             <summary>   Gets with skip and take. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <typeparam name="TKey"> Type of the key. </typeparam>
+             <param name="predicate">            The predicate. </param>
+             <param name="keySelectorForOrder">  (Optional) The key selector for order. </param>
+             <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
+             <param name="skip">           (Optional) Item count for skip. </param>
+             <param name="take">        (Optional) Item count for take. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   The with page. </returns>
+        </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.GetAllWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
              <summary>   Gets all with page. </summary>
             
@@ -91,6 +106,24 @@
              <param name="asNoTracking"> asNoTracking parameter. </param>
             
              <returns>   A T. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+             <summary>   Gets a t using the given predicate. </summary>
+            
+             <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   A T. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.SingleOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+             <summary>   Gets a t using the given predicate. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   A T instance. </returns>
         </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Get First the given predicate. </summary>
@@ -137,6 +170,12 @@
             
              <param name="entity">   The entity to delete. </param>
         </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.UpdateRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Update entity array.
+            </summary>
+            <param name="entities">entity array</param>
+        </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Delete(`0)">
              <summary>   Deletes the given oid. </summary>
             
@@ -146,6 +185,12 @@
              <summary>   Deletes the given oid. </summary>
             
              <param name="oid">  The oid. </param>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.DeleteRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Delete entity array.
+            </summary>
+            <param name="entities"> entity array</param>
         </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.SqlSetQuery(System.String,System.Object[])">
              <summary>   SQL set query. </summary>
@@ -290,6 +335,16 @@
             
              <value> True if logs debug, false if not. </value>
         </member>
+        <member name="P:SimpleInfra.Data.SimpleBaseDataRepository`1.Context">
+            <summary>
+            Database Context.
+            </summary>
+        </member>
+        <member name="P:SimpleInfra.Data.SimpleBaseDataRepository`1.Connection">
+            <summary>
+            Database Connection.
+            </summary>
+        </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Include(System.String)">
              <summary>   Includes the given entity type name. </summary>
             
@@ -341,6 +396,21 @@
             
              <returns>   The with page. </returns>
         </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetWithSkipAndTake``1(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
+             <summary>   Gets with skip and take. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <typeparam name="TKey"> Type of the key. </typeparam>
+             <param name="predicate">            The predicate. </param>
+             <param name="keySelectorForOrder">  (Optional) The key selector for order. </param>
+             <param name="isOrderByDesc">        (Optional) True if is order by description, false if not. </param>
+             <param name="skip">           (Optional) Item count for skip. </param>
+             <param name="take">        (Optional) Item count for take. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   The with page. </returns>
+        </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAllWithPage``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.UInt32,System.UInt32,System.Boolean)">
              <summary>   Gets all with page. </summary>
             
@@ -356,6 +426,26 @@
              <returns>   all with page. </returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Get(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+             <summary>   Gets a t using the given predicate. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   A T instance. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+             <summary>   Gets a t using the given predicate. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   A T instance. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.SingleOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Gets a t using the given predicate. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
@@ -536,12 +626,25 @@
             
              <param name="entity">   The entity to delete. </param>
         </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.UpdateRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Delete entity array.
+            </summary>
+            <param name="entities"> entity array</param>
+            <returns>IEnumrable entity</returns>
+        </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Delete(`0)">
              <summary>   Deletes the given oid. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <param name="entity">   The entity to delete. </param>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.DeleteRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Delete entity array.
+            </summary>
+            <param name="entities"> entity array</param>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Delete(System.Object)">
              <summary> Deletes the given oid. if oid is null or DbNull, delete operation will be cancelled. </summary>
