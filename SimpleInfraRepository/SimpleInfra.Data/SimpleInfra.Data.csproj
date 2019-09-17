@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,8 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ISimpleDataAsyncRepository.cs" />
     <Compile Include="Interfaces\ISimpleDataRepository.cs" />
     <Compile Include="Interfaces\ISimpleRepoLogger.cs" />
+    <Compile Include="SimpleBaseDataAsyncRepository.cs" />
     <Compile Include="SimpleBaseDataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

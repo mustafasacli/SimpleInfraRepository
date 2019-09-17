@@ -15,5 +15,8 @@
         <dependencies>
             <dependency id="EntityFramework" version="6.2.0" />
         </dependencies>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Data.Entity" targetFramework="net45" />
+		</frameworkAssemblies>
     </metadata>
 </package>

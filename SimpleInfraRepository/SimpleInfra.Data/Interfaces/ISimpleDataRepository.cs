@@ -266,6 +266,6 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   The by id. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        T GetById(object oid);
+        T GetById(params object[] oid);
     }
 }

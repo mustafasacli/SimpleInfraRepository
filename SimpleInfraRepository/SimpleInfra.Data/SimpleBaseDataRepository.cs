@@ -13,6 +13,7 @@ namespace SimpleInfra.Data
     using System.Data.Entity.Validation;
     using System.Linq;
     using System.Linq.Expressions;
+    using System.Threading.Tasks;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   A simple base data repository. </summary>
@@ -21,7 +22,7 @@ namespace SimpleInfra.Data
     ///
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public abstract class SimpleBaseDataRepository<T> : ISimpleDataRepository<T> where T : class
+    public abstract partial class SimpleBaseDataRepository<T> : ISimpleDataAsyncRepository<T> where T : class
     {
         /// <summary>
         /// Context for the database.
@@ -310,9 +311,12 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   The by id. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual T GetById(object oid)
+        public virtual T GetById(params object[] oid)
         {
-            if (CheckObjectIsNull(oid))
+            if (oid == null)
+                return null;
+
+            if (oid.All(q => CheckObjectIsNull(q)))
             {
                 return null;
             }
