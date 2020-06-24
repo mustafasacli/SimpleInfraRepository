@@ -13,7 +13,6 @@ namespace SimpleInfra.Data
     using System.Data.Entity.Validation;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.Threading.Tasks;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   A simple base data repository. </summary>
@@ -22,8 +21,13 @@ namespace SimpleInfra.Data
     ///
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public abstract partial class SimpleBaseDataRepository<T> : ISimpleDataAsyncRepository<T> where T : class
+    public abstract partial class SimpleBaseDataRepository<T> : ISimpleDataRepository<T> where T : class
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public event ContextDisposedHandler DisposedHandler;
+
         /// <summary>
         /// Context for the database.
         /// </summary>
@@ -302,6 +306,35 @@ namespace SimpleInfra.Data
             return instance;
         }
 
+        /// <summary>   Gets a t using the given predicate. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   A T instance. </returns>
+        public virtual T Single(Expression<Func<T, bool>> predicate, bool asNoTracking = false)
+        {
+            T instance = null;
+
+            if (asNoTracking)
+            {
+                instance = dbSet
+                        .Where(predicate)
+                .AsNoTracking()
+                .Single();
+            }
+            else
+            {
+                instance = dbSet
+                        .Where(predicate)
+                .Single();
+            }
+
+            return instance;
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets by id. </summary>
         ///
@@ -337,6 +370,39 @@ namespace SimpleInfra.Data
         protected bool CheckObjectIsNull(object oid)
         {
             return oid == null || oid == (object)DBNull.Value;
+        }
+
+        /// <summary>
+        ///  Finds an entity with the given primary key values. If an entity with the given
+        ///     primary key values exists in the context, then it is returned immediately without
+        ///     making a request to the store. Otherwise, a request is made to the store for
+        ///     an entity with the given primary key values and this entity, if found, is attached
+        ///     to the context and returned. If no entity is found in the context or the store,
+        ///     then null is returned.
+        /// </summary>
+        /// <remarks> 
+        /// The ordering of composite key values is as defined in the EDM, which is in turn
+        ///     as defined in the designer, by the Code First fluent API, or by the DataMember
+        ///     attribute.
+        /// </remarks>
+        /// <exception cref="T:System.InvalidOperationException">
+        /// Thrown if multiple entities exist in the context with the primary key values given.
+        /// </exception>
+        /// <exception cref="T:System.InvalidOperationException">
+        /// Thrown if the type of entity is not part of the data model for this context.
+        /// </exception>
+        /// <exception cref="T:System.InvalidOperationException">
+        ///  Thrown if the types of the key values do not match the types of the key values
+        ///     for the entity type to be found.
+        /// </exception>
+        /// <exception cref="T:System.InvalidOperationException">
+        ///  Thrown if the context has been disposed.
+        /// </exception>
+        /// <param name="keyValues">The values of the primary key for the entity to be found.</param>
+        /// <returns>The entity found, or null.</returns>
+        public virtual T Find(params object[] keyValues)
+        {
+            return dbSet.Find(keyValues);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -442,7 +508,7 @@ namespace SimpleInfra.Data
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
-        /// <param name="entities"> An IEnumerable&lt;T&gt; of items to append to this. </param>
+        /// <param name="entities"> An IEnumerable&lt;T&gt; of items to append to.</param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public virtual void AddRange(IEnumerable<T> entities)
         {
@@ -560,6 +626,22 @@ namespace SimpleInfra.Data
             dbContext.Entry(entity).State = EntityState.Modified;
         }
 
+        /// <summary>
+        /// Delete entity array.
+        /// </summary>
+        /// <param name="entities"> entity array</param>
+        /// <returns>IEnumrable entity</returns>
+        public virtual void UpdateRange(IEnumerable<T> entities)
+        {
+            if (entities != null && entities.Count() >= 1)
+            {
+                foreach (T entity in entities)
+                {
+                    Update(entity);
+                }
+            }
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Deletes the given oid. </summary>
         ///
@@ -574,6 +656,18 @@ namespace SimpleInfra.Data
 
             dbSet.Remove(entity);
             dbContext.Entry(entity).State = EntityState.Deleted;
+        }
+
+        /// <summary>
+        /// Delete entity array.
+        /// </summary>
+        /// <param name="entities"> entity array</param>
+        public virtual void DeleteRange(IEnumerable<T> entities)
+        {
+            if (entities != null && entities.Count() >= 1)
+            {
+                dbSet.RemoveRange(entities);
+            }
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -619,28 +713,22 @@ namespace SimpleInfra.Data
                 // Exception logging
                 try
                 {
-                    if (this.LogError)
+                    if (LogError)
                     {
-                        this.SimpleRepoLogger?.Error(dve);
+                        SimpleRepoLogger?.Error(dve);
                     }
                 }
-                catch
-                { }
-                finally
-                { }
+                catch { }
 
                 try
                 {
-                    if (this.LogError)
+                    if (LogError)
                     {
                         var errors = GetValidationErrors(dve);
-                        this.SimpleRepoLogger?.Error(errors.ToArray());
+                        SimpleRepoLogger?.Error(errors.ToArray());
                     }
                 }
-                catch
-                { }
-                finally
-                { }
+                catch { }
 
                 throw;
             }
@@ -648,14 +736,12 @@ namespace SimpleInfra.Data
             {
                 try
                 {
-                    if (this.LogError)
+                    if (LogError)
                     {
-                        // Exception logging
-                        this.SimpleRepoLogger?.Error(e);
+                        SimpleRepoLogger?.Error(e);
                     }
                 }
-                finally
-                { }
+                catch { }
 
                 throw;
             }
@@ -684,15 +770,25 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!disposed)
             {
                 if (disposing)
                 {
-                    dbContext.Dispose();
+                    if (this.IsContextDisposedOrNull() == false)
+                    {
+                        dbContext?.Dispose();
+                        try
+                        {
+                            if (this.DisposedHandler != null)
+                            { this.DisposedHandler.Invoke(this, new DbContextDisposingEventArgs(dbContext)); }
+                        }
+                        catch (Exception ee)
+                        { this.SimpleRepoLogger?.Error(ee); }
+                    }
                 }
             }
 
-            this.disposed = true;
+            disposed = true;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -738,10 +834,32 @@ namespace SimpleInfra.Data
             catch (Exception e)
             {
                 // Exception logging
-                this.SimpleRepoLogger?.Error(e);
+                SimpleRepoLogger?.Error(e);
             }
 
             return errorMessages;
+        }
+
+        /// <summary>
+        /// Checks Dbcontext is disposed.
+        /// </summary>
+        public bool IsContextDisposedOrNull()
+        {
+            if (dbContext == null)
+                return true;
+
+            var isContextDisposed = false;
+
+            try
+            { var config = dbContext.Configuration; }
+            catch (ObjectDisposedException dex)
+            {
+                isContextDisposed = true;
+                SimpleRepoLogger?.Error(dex,
+                    $"Entity: {typeof(T).FullName}");
+            }
+
+            return isContextDisposed;
         }
     }
 }

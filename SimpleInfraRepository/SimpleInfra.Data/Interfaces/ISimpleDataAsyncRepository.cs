@@ -1,10 +1,7 @@
 namespace SimpleInfra.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
@@ -15,7 +12,7 @@ namespace SimpleInfra.Data
     ///
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public interface ISimpleDataAsyncRepository<T> : ISimpleDataRepository<T> where T : class
+    public interface ISimpleDataAsyncRepository<T> where T : class
     {
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets a t using the given predicate. </summary>
@@ -98,5 +95,11 @@ namespace SimpleInfra.Data
         /// <returns>   The by id. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         Task<T> GetByIdAsync(params object[] oid);
+
+        /// <summary>
+        /// save changes async and returns result as Task-int.
+        /// </summary>
+        /// <returns></returns>
+        Task<int> SaveChangesAsync();
     }
 }

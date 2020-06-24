@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInfra.Common.Core</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInfra.Common.Core.BusinessResponseValues">
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Core.BusinessResponseValues" />
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.Common.Core.BusinessResponseValues.NullIdValue">
+            <summary>
+            Defines the NullIdValue
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.Common.Core.BusinessResponseValues.NullEntityValue">
+            <summary>
+            Defines the NullEntityValue
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.Common.Core.BusinessResponseValues.NullDtoValue">
+            <summary>
+            Defines the NullDtoValue
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.Common.Core.BusinessResponseValues.ValidationErrorResult">
+            <summary>
+            Defines the ValidationErrorResult
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.Common.Core.BusinessResponseValues.InternalError">
+            <summary>
+            Defines the InternalError
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.Common.Core.SimpleValues.DeletePropertyName">
+            <summary>
+            Delete property name is Silindi.
+            </summary>
+        </member>
+    </members>
+</doc>

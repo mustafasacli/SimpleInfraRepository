@@ -7,14 +7,11 @@
 namespace SimpleInfra.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Validation;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
-    using System.Data.Entity;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   A simple base data repository. </summary>
@@ -23,7 +20,7 @@ namespace SimpleInfra.Data
     ///
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public abstract partial class SimpleBaseDataRepository<T>
+    public abstract partial class SimpleBaseDataRepository<T> : ISimpleDataRepository<T> where T : class
     {
         /// <summary>
         /// 
@@ -171,9 +168,9 @@ namespace SimpleInfra.Data
                 // Exception logging
                 try
                 {
-                    if (this.LogError)
+                    if (LogError)
                     {
-                        this.SimpleRepoLogger?.Error(dve);
+                        SimpleRepoLogger?.Error(dve);
                     }
                 }
                 catch
@@ -183,10 +180,10 @@ namespace SimpleInfra.Data
 
                 try
                 {
-                    if (this.LogError)
+                    if (LogError)
                     {
                         var errors = GetValidationErrors(dve);
-                        this.SimpleRepoLogger?.Error(errors.ToArray());
+                        SimpleRepoLogger?.Error(errors.ToArray());
                     }
                 }
                 catch
@@ -200,10 +197,10 @@ namespace SimpleInfra.Data
             {
                 try
                 {
-                    if (this.LogError)
+                    if (LogError)
                     {
                         // Exception logging
-                        this.SimpleRepoLogger?.Error(e);
+                        SimpleRepoLogger?.Error(e);
                     }
                 }
                 finally

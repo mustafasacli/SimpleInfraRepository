@@ -4,6 +4,34 @@
         <name>SimpleInfra.Data</name>
     </assembly>
     <members>
+        <member name="T:SimpleInfra.Data.DbContextDisposingEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.Data.DbContextDisposingEventArgs.#ctor(System.Data.Entity.DbContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="P:SimpleInfra.Data.DbContextDisposingEventArgs.Context">
+            <summary>
+            Gets DbContext object.
+            </summary>
+        </member>
+        <member name="T:SimpleInfra.Data.SimpleBaseRepository`1">
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Data.SimpleBaseRepository`1" />
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseRepository`1.#ctor(System.Data.Entity.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInfra.Data.SimpleBaseRepository`1"/> class.
+            </summary>
+            <param name="context">DbContext instance.</param>
+        </member>
         <member name="T:SimpleInfra.Data.ISimpleDataAsyncRepository`1">
              <summary>   Interface for simple data async repository. </summary>
             
@@ -81,12 +109,30 @@
             
              <returns>   The by id. </returns>
         </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataAsyncRepository`1.SaveChangesAsync">
+            <summary>
+            save changes async and returns result as Task-int.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleInfra.Data.ContextDisposedHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="eventargs"></param>
+        </member>
         <member name="T:SimpleInfra.Data.ISimpleDataRepository`1">
              <summary>   Interface for simple data repository. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <typeparam name="T">    Generic type parameter. </typeparam>
+        </member>
+        <member name="E:SimpleInfra.Data.ISimpleDataRepository`1.DisposedHandler">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:SimpleInfra.Data.ISimpleDataRepository`1.SimpleRepoLogger">
              <summary>   Gets the simple repo logger. </summary>
@@ -169,6 +215,46 @@
             
              <returns>   A T. </returns>
         </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+             <summary>   Gets a t using the given predicate. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   A T instance. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Find(System.Object[])">
+            <summary>
+             Finds an entity with the given primary key values. If an entity with the given
+                primary key values exists in the context, then it is returned immediately without
+                making a request to the store. Otherwise, a request is made to the store for
+                an entity with the given primary key values and this entity, if found, is attached
+                to the context and returned. If no entity is found in the context or the store,
+                then null is returned.
+            </summary>
+            <remarks> 
+            The ordering of composite key values is as defined in the EDM, which is in turn
+                as defined in the designer, by the Code First fluent API, or by the DataMember
+                attribute.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if multiple entities exist in the context with the primary key values given.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the type of entity is not part of the data model for this context.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+             Thrown if the types of the key values do not match the types of the key values
+                for the entity type to be found.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+             Thrown if the context has been disposed.
+            </exception>
+            <param name="keyValues">The values of the primary key for the entity to be found.</param>
+            <returns>The entity found, or null.</returns>
+        </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Get First the given predicate. </summary>
             
@@ -214,10 +300,20 @@
             
              <param name="entity">   The entity to delete. </param>
         </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.UpdateRange(System.Collections.Generic.IEnumerable{`0})">
+             <summary>   Updates a range. </summary>
+            
+             <param name="entities"> An IEnumerable&lt;T&gt; of items to update for this. </param>
+        </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Delete(`0)">
              <summary>   Deletes the given oid. </summary>
             
              <param name="entity">   The entity to delete. </param>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.DeleteRange(System.Collections.Generic.IEnumerable{`0})">
+             <summary>   Deletes a range. </summary>
+            
+             <param name="entities"> An IEnumerable&lt;T&gt; of items to remove from this. </param>
         </member>
         <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.Delete(System.Object)">
              <summary>   Deletes the given oid. </summary>
@@ -281,6 +377,17 @@
              <param name="oid">  The oid. </param>
             
              <returns>   The by id. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.SaveChanges">
+            <summary>
+            save changes and returns result.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleInfra.Data.ISimpleDataRepository`1.IsContextDisposedOrNull">
+            <summary>
+            Checks Dbcontext is disposed.
+            </summary>
         </member>
         <member name="T:SimpleInfra.Data.ISimpleRepoLogger">
             <summary>
@@ -397,6 +504,11 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="E:SimpleInfra.Data.SimpleBaseDataRepository`1.DisposedHandler">
+            <summary>
+            
+            </summary>
         </member>
         <member name="F:SimpleInfra.Data.SimpleBaseDataRepository`1.dbContext">
             <summary>
@@ -515,6 +627,16 @@
             
              <returns>   A T instance. </returns>
         </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
+             <summary>   Gets a t using the given predicate. </summary>
+            
+             <remarks>   Msacli, 30.04.2019. </remarks>
+            
+             <param name="predicate">    The predicate. </param>
+             <param name="asNoTracking"> asNoTracking parameter. </param>
+            
+             <returns>   A T instance. </returns>
+        </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetById(System.Object[])">
              <summary>   Gets by id. </summary>
             
@@ -532,6 +654,36 @@
              <param name="oid">  The oid. </param>
             
              <returns>   True if it succeeds, false if it fails. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Find(System.Object[])">
+            <summary>
+             Finds an entity with the given primary key values. If an entity with the given
+                primary key values exists in the context, then it is returned immediately without
+                making a request to the store. Otherwise, a request is made to the store for
+                an entity with the given primary key values and this entity, if found, is attached
+                to the context and returned. If no entity is found in the context or the store,
+                then null is returned.
+            </summary>
+            <remarks> 
+            The ordering of composite key values is as defined in the EDM, which is in turn
+                as defined in the designer, by the Code First fluent API, or by the DataMember
+                attribute.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if multiple entities exist in the context with the primary key values given.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if the type of entity is not part of the data model for this context.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+             Thrown if the types of the key values do not match the types of the key values
+                for the entity type to be found.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+             Thrown if the context has been disposed.
+            </exception>
+            <param name="keyValues">The values of the primary key for the entity to be found.</param>
+            <returns>The entity found, or null.</returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
              <summary>   Get First the given predicate. </summary>
@@ -583,7 +735,7 @@
             
              <remarks>   Msacli, 30.04.2019. </remarks>
             
-             <param name="entities"> An IEnumerable&lt;T&gt; of items to append to this. </param>
+             <param name="entities"> An IEnumerable&lt;T&gt; of items to append to.</param>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Create">
              <summary>   Creates a new T. </summary>
@@ -656,12 +808,25 @@
             
              <param name="entity">   The entity to delete. </param>
         </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.UpdateRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Delete entity array.
+            </summary>
+            <param name="entities"> entity array</param>
+            <returns>IEnumrable entity</returns>
+        </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Delete(`0)">
              <summary>   Deletes the given oid. </summary>
             
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <param name="entity">   The entity to delete. </param>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.DeleteRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Delete entity array.
+            </summary>
+            <param name="entities"> entity array</param>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Delete(System.Object)">
              <summary> Deletes the given oid. if oid is null or DbNull, delete operation will be cancelled. </summary>
@@ -714,6 +879,11 @@
              <param name="ex">   Details of the exception. </param>
             
              <returns>   The validation errors. </returns>
+        </member>
+        <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.IsContextDisposedOrNull">
+            <summary>
+            Checks Dbcontext is disposed.
+            </summary>
         </member>
     </members>
 </doc>

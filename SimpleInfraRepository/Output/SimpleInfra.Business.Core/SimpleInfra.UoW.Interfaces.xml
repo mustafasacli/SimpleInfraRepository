@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInfra.UoW.Interfaces</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInfra.UoW.Interfaces.ISimpleUnitOfWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.UoW.Interfaces.ISimpleUnitOfWork.GetRepository``1">
+            <summary>
+            Gets ISimpleDataRepository instance for giren entity class.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>returns a class instance what is implemented by ISimpleDataRepository.</returns>
+        </member>
+    </members>
+</doc>

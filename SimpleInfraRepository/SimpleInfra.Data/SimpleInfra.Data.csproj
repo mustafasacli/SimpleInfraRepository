@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimpleInfra.Data</RootNamespace>
     <AssemblyName>SimpleInfra.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbContextDisposingEventArgs.cs" />
+    <Compile Include="SimpleBaseRepository.cs" />
     <Compile Include="Interfaces\ISimpleDataAsyncRepository.cs" />
     <Compile Include="Interfaces\ISimpleDataRepository.cs" />
     <Compile Include="Interfaces\ISimpleRepoLogger.cs" />

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInfra.Validation</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInfra.Validation.EntityValidationResult">
+            <summary>
+            EntityValidationResult class.
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.Validation.EntityValidationResult.#ctor(System.Collections.Generic.IList{System.ComponentModel.DataAnnotations.ValidationResult})">
+            <summary>
+            Creates EntityValidationResult instance with validation errors.
+            </summary>
+            <param name="errors">Validation Errors</param>
+        </member>
+        <member name="P:SimpleInfra.Validation.EntityValidationResult.Errors">
+            <summary>
+            Gets Validation Errors.
+            </summary>
+        </member>
+        <member name="P:SimpleInfra.Validation.EntityValidationResult.HasError">
+            <summary>
+            Gets Has Error.
+            </summary>
+        </member>
+        <member name="P:SimpleInfra.Validation.EntityValidationResult.ValidationMessages">
+            <summary>
+            Gets Validation Error Messages.
+            </summary>
+        </member>
+        <member name="P:SimpleInfra.Validation.EntityValidationResult.AllValidationMessages">
+            <summary>
+            Gets All Validation Error Messages.
+            </summary>
+        </member>
+        <member name="P:SimpleInfra.Validation.EntityValidationResult.AllDevValidationMessages">
+            <summary>
+            Gets All Validation Error Messages.
+            </summary>
+        </member>
+        <member name="T:SimpleInfra.Validation.EntityValidator`1">
+            <summary>
+            EntityValidator class
+            </summary>
+            <typeparam name="T">Entity Type</typeparam>
+        </member>
+        <member name="M:SimpleInfra.Validation.EntityValidator`1.Validate(`0)">
+            <summary>
+             Validate an Entity.
+            </summary>
+            <param name="entity"></param>
+            <returns>Reurns an EntityValidationResult instance.</returns>
+        </member>
+        <member name="T:SimpleInfra.Validation.ValidationExtension">
+            <summary>
+            ValidationExtension class
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.Validation.ValidationExtension.Validate``1(``0)">
+            <summary>
+            Validate an Entity.
+            </summary>
+            <typeparam name="T">Entity Type</typeparam>
+            <param name="entity">Entity instance</param>
+            <returns>Returns an EntityValidationResult instance.</returns>
+        </member>
+        <member name="T:SimpleInfra.Validation.ValidationHelper">
+            <summary>
+            ValidationHelper class
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.Validation.ValidationHelper.ValidateEntity``1(``0)">
+            <summary>
+            Validates object.
+            </summary>
+            <typeparam name="T">Entity Type</typeparam>
+            <param name="entity">Entity instance</param>
+            <returns>returns an EntityValidationResult instance.</returns>
+        </member>
+    </members>
+</doc>

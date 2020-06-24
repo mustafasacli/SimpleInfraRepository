@@ -7,6 +7,13 @@ namespace SimpleInfra.Data
     using System.Linq;
     using System.Linq.Expressions;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="eventargs"></param>
+    public delegate void ContextDisposedHandler(object sender, DbContextDisposingEventArgs eventargs);
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   Interface for simple data repository. </summary>
     ///
@@ -14,8 +21,13 @@ namespace SimpleInfra.Data
     ///
     /// <typeparam name="T">    Generic type parameter. </typeparam>
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    public interface ISimpleDataRepository<T> : IDisposable where T : class
+    public interface ISimpleDataRepository<T> : ISimpleDataAsyncRepository<T>, IDisposable where T : class
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        event ContextDisposedHandler DisposedHandler;
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets the simple repo logger. </summary>
         ///
@@ -129,6 +141,46 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         T Get(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
 
+        /// <summary>   Gets a t using the given predicate. </summary>
+        ///
+        /// <remarks>   Msacli, 30.04.2019. </remarks>
+        ///
+        /// <param name="predicate">    The predicate. </param>
+        /// <param name="asNoTracking"> asNoTracking parameter. </param>
+        ///
+        /// <returns>   A T instance. </returns>
+        T Single(Expression<Func<T, bool>> predicate, bool asNoTracking = false);
+
+        /// <summary>
+        ///  Finds an entity with the given primary key values. If an entity with the given
+        ///     primary key values exists in the context, then it is returned immediately without
+        ///     making a request to the store. Otherwise, a request is made to the store for
+        ///     an entity with the given primary key values and this entity, if found, is attached
+        ///     to the context and returned. If no entity is found in the context or the store,
+        ///     then null is returned.
+        /// </summary>
+        /// <remarks> 
+        /// The ordering of composite key values is as defined in the EDM, which is in turn
+        ///     as defined in the designer, by the Code First fluent API, or by the DataMember
+        ///     attribute.
+        /// </remarks>
+        /// <exception cref="T:System.InvalidOperationException">
+        /// Thrown if multiple entities exist in the context with the primary key values given.
+        /// </exception>
+        /// <exception cref="T:System.InvalidOperationException">
+        /// Thrown if the type of entity is not part of the data model for this context.
+        /// </exception>
+        /// <exception cref="T:System.InvalidOperationException">
+        ///  Thrown if the types of the key values do not match the types of the key values
+        ///     for the entity type to be found.
+        /// </exception>
+        /// <exception cref="T:System.InvalidOperationException">
+        ///  Thrown if the context has been disposed.
+        /// </exception>
+        /// <param name="keyValues">The values of the primary key for the entity to be found.</param>
+        /// <returns>The entity found, or null.</returns>
+        T Find(params object[] keyValues);
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Get First the given predicate. </summary>
         ///
@@ -189,11 +241,25 @@ namespace SimpleInfra.Data
         void Update(T entity);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Updates a range. </summary>
+        ///
+        /// <param name="entities"> An IEnumerable&lt;T&gt; of items to update for this. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        void UpdateRange(IEnumerable<T> entities);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Deletes the given oid. </summary>
         ///
         /// <param name="entity">   The entity to delete. </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void Delete(T entity);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Deletes a range. </summary>
+        ///
+        /// <param name="entities"> An IEnumerable&lt;T&gt; of items to remove from this. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        void DeleteRange(IEnumerable<T> entities);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Deletes the given oid. </summary>
@@ -267,5 +333,16 @@ namespace SimpleInfra.Data
         /// <returns>   The by id. </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         T GetById(params object[] oid);
+
+        /// <summary>
+        /// save changes and returns result.
+        /// </summary>
+        /// <returns></returns>
+        int SaveChanges();
+
+        /// <summary>
+        /// Checks Dbcontext is disposed.
+        /// </summary>
+        bool IsContextDisposedOrNull();
     }
 }

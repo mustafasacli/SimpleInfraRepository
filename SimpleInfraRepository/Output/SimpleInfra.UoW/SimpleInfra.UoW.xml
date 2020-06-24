@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInfra.UoW</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInfra.UoW.SimpleUnitOfWork">
+            <summary>
+            Defines the <see cref="T:SimpleInfra.UoW.SimpleUnitOfWork" />
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.UoW.SimpleUnitOfWork.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SimpleInfra.UoW.SimpleUnitOfWork.Logger">
+            <summary>
+            Gets Logger instance.
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.UoW.SimpleUnitOfWork.GetRepository``1">
+            <summary>
+            Gets DbContext intsance for given mapped entity.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Returns ISimpleDataRepository instance.</returns>
+        </member>
+        <member name="F:SimpleInfra.UoW.SimpleUnitOfWorkCache.contextTypes">
+            <summary>
+            Defines the contextTypes
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.UoW.SimpleUnitOfWorkCache.contextInstanceList">
+            <summary>
+            Defines the contextInstanceList
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.UoW.SimpleUnitOfWorkCache.contextTypeList">
+            <summary>
+            Defines the contextTypeList
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.UoW.SimpleUnitOfWorkCache.entityTypesList">
+            <summary>
+            Defines the entityTypesList
+            </summary>
+        </member>
+        <member name="P:SimpleInfra.UoW.SimpleUnitOfWorkCache.Logger">
+            <summary>
+            Gets Logger instance.
+            </summary>
+        </member>
+        <member name="M:SimpleInfra.UoW.SimpleUnitOfWorkCache.GetDbContext(System.String)">
+            <summary>
+            Gets DbContext instance from cache if exist , if instance not exist create and return instance.
+            </summary>
+            <param name="contextTypeName">The contextTypeName<see cref="T:System.String"/></param>
+            <returns>The DbContext instance.<see cref="T:System.Data.Entity.DbContext"/></returns>
+        </member>
+    </members>
+</doc>
