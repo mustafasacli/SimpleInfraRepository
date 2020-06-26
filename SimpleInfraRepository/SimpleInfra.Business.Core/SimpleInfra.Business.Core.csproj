@@ -62,6 +62,10 @@
       <Project>{439E5314-5CD3-494F-A948-68C8D3FD94EC}</Project>
       <Name>SimpleInfra.Common.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimpleInfra.Business.Interfaces.Core\SimpleInfra.Business.Interfaces.Core.csproj">
+      <Project>{E0128372-E7AC-4932-8C99-2449F612AB73}</Project>
+      <Name>SimpleInfra.Business.Interfaces.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleInfra.Common.Core\SimpleInfra.Common.Core.csproj">
       <Project>{BD9F00DA-062C-4EF3-8880-D19669250834}</Project>
       <Name>SimpleInfra.Common.Core</Name>

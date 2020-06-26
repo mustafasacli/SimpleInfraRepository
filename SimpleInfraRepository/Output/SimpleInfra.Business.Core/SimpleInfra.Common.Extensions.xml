@@ -185,15 +185,6 @@
             
              <returns>   The properties. </returns>
         </member>
-        <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetPropertyValues``1(``0,System.Collections.Generic.List{System.String})">
-             <summary>
-            
-             </summary>
-             <typeparam name="T"></typeparam>
-             <param name="t"></param>
-             <param name="propertyNames"></param>
-             <returns></returns>
-        </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetColumnsReverse``1(``0)">
              <summary>   A T extension method that gets columns reverse. </summary>
             
@@ -457,6 +448,11 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
+        <member name="T:SimpleInfra.Common.Extensions.PropertyExtension">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:SimpleInfra.Common.Extensions.PropertyExtension.GetColumnNameOfProperty(System.Reflection.PropertyInfo)">
             <summary>
             get the column attribute value of property, the column attribute no exist return property name.
@@ -697,7 +693,7 @@
             
              <returns>   The ıdentity property of type. </returns>
         </member>
-        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetIdentityProperties(System.Type)">
+        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetIdentityPropertyList(System.Type)">
             <summary>
             
             </summary>
@@ -827,23 +823,6 @@
             </summary>
             <param name="type"></param>
             <returns></returns>
-        </member>
-        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetKeyNamesOfType(System.Type,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="type"></param>
-            <param name="includeIdentityProperties"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetIdentityPropertyNamesOfType(System.Type)">
-             <summary>   A Type extension method that gets ıdentity property of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The ıdentity property of type. </returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.TypeHelper">
              <summary>   A type helper. </summary>

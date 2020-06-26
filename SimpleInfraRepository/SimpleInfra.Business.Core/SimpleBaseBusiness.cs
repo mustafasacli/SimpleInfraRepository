@@ -18,13 +18,14 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using SimpleInfra.Business.Interfaces.Core;
 
     /// <summary>
     /// Gsb Base Business class.
     /// </summary>
     /// <typeparam name="TDto"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
-    public abstract class SimpleBaseBusiness<TDto, TEntity/*, TRepository*/> : IDisposable
+    public abstract class SimpleBaseBusiness<TDto, TEntity/*, TRepository*/> : ISimpleBaseBusiness<TDto>, IDisposable
             where TDto : SimpleBaseDto, new()
             where TEntity : SimpleBaseEntity, new()
         //where TRepository : ISimpleDataRepository<TEntity>, new()
@@ -305,13 +306,16 @@
             var tmpEnt = MapReverse(dto);
 
             var deleteProperty = typeof(TEntity).GetProperty(SimpleValues.DeletePropertyName);
-            var keys = typeof(TEntity).GetKeyNamesOfType(includeIdentityProperties: true);
+            var keys = typeof(TEntity).GetKeysOfType().ToList();//.GetKeyNamesOfType(includeIdentityProperties: true);
             TEntity ent = null;
             using (var repo = GetRepository())
             {
                 if (keys.Count > 0)
                 {
-                    var values = tmpEnt.GetPropertyValues(keys);
+                    var values = new object[keys.Count];
+                    int indx = 0;
+                    keys.ForEach(q => { values[indx++] = tmpEnt.GetPropertyValue(q); });
+                    //tmpEnt.GetPropertyValues(keys);
 
                     if (values.Length > 0)
                         ent = repo.Find(values);
@@ -355,7 +359,7 @@
 
             var deleteList = MapListReverse(dtoList);
 
-            var keys = typeof(TEntity).GetKeyNamesOfType(includeIdentityProperties: true);
+            var keys = typeof(TEntity).GetKeysOfType().ToList();//GetKeyNamesOfType(includeIdentityProperties: true);
 
             using (var repo = GetRepository())
             {
@@ -364,7 +368,10 @@
                     var entList = new List<TEntity>();
                     for (int counter = 0; counter < deleteList.Count; counter++)
                     {
-                        var values = deleteList[counter].GetPropertyValues(keys);
+                        var values = new object[keys.Count];
+                        int indx = 0;
+                        keys.ForEach(q => { values[indx++] = deleteList[counter].GetPropertyValue(q); });
+                        //var values = deleteList[counter].GetPropertyValues(keys);
                         if (values.Length == 0) continue;
 
                         var entity = repo.Find(values);
@@ -590,5 +597,15 @@
         }
 
         #endregion IDisposable Members
+
+        public abstract SimpleResponse<TDto> Create(TDto entity);
+
+        public abstract SimpleResponse<TDto> Read(object oid);
+
+        public abstract SimpleResponse Update(TDto entity);
+
+        public abstract SimpleResponse Delete(TDto entity);
+
+        public abstract SimpleResponse<List<TDto>> ReadAll();
     }
 }

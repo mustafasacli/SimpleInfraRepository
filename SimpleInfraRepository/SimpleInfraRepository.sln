@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInfra.Common.Extensio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimpleInfra", "SimpleInfra", "{B17F0591-C437-45B5-9572-10AEB5C6BC27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInfra.Business.Interfaces.Core", "SimpleInfra.Business.Interfaces.Core\SimpleInfra.Business.Interfaces.Core.csproj", "{E0128372-E7AC-4932-8C99-2449F612AB73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{439E5314-5CD3-494F-A948-68C8D3FD94EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{439E5314-5CD3-494F-A948-68C8D3FD94EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{439E5314-5CD3-494F-A948-68C8D3FD94EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0128372-E7AC-4932-8C99-2449F612AB73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0128372-E7AC-4932-8C99-2449F612AB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0128372-E7AC-4932-8C99-2449F612AB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0128372-E7AC-4932-8C99-2449F612AB73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{A97DF879-CC4E-40AD-9521-C1FEC356A528} = {B17F0591-C437-45B5-9572-10AEB5C6BC27}
 		{BD9F00DA-062C-4EF3-8880-D19669250834} = {B17F0591-C437-45B5-9572-10AEB5C6BC27}
 		{439E5314-5CD3-494F-A948-68C8D3FD94EC} = {B17F0591-C437-45B5-9572-10AEB5C6BC27}
+		{E0128372-E7AC-4932-8C99-2449F612AB73} = {B17F0591-C437-45B5-9572-10AEB5C6BC27}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74E38219-DCEB-4697-B5F8-A8514C92F408}
