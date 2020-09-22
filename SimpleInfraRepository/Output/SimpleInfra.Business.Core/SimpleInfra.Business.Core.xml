@@ -17,9 +17,9 @@
             </summary>
         </member>
         <member name="P:SimpleInfra.Business.Core.SimpleBaseBusiness`2.SimpleUnitOfWork">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.GetRepository">
             <summary>
@@ -189,10 +189,10 @@
             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.Dispose(System.Boolean)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="disposing"></param>
+             </summary>
+             <param name="disposing"></param>
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.Dispose">
             <summary>

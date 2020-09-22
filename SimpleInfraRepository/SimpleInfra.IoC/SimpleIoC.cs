@@ -1,14 +1,14 @@
 ﻿namespace SimpleInfra.IoC
 {
+    using SimpleFileLogging;
+    using SimpleFileLogging.Enums;
+    using SimpleFileLogging.Interfaces;
     using SimpleInjector;
     using SimpleInjector.Lifestyles;
     using System;
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using SimpleFileLogging;
-    using SimpleFileLogging.Interfaces;
-    using SimpleFileLogging.Enums;
 
     /// <summary>
     /// Simple IoC class
@@ -22,10 +22,7 @@
         private Container container = null;
 
         /// <summary>   The instance lazy. </summary>
-        private static Lazy<SimpleIoC> instanceLazy = new Lazy<SimpleIoC>(() =>
-        {
-            return new SimpleIoC();
-        }, isThreadSafe: true);
+        private static Lazy<SimpleIoC> instanceLazy = new Lazy<SimpleIoC>(() => { return new SimpleIoC(); }, isThreadSafe: true);
 
         /// <summary>
         /// ISimpleLogger instance.
@@ -65,7 +62,6 @@
             get
             {
                 BootstrapContainer();
-
                 return container;
             }
         }
@@ -77,9 +73,7 @@
                 lock (lockObj)
                 {
                     if (container == null)
-                    {
-                        Bootstrap();
-                    }
+                    { Bootstrap(); }
                 }
             }
         }
@@ -98,9 +92,7 @@
         /// Starts all registirations.
         /// </summary>
         public void Start()
-        {
-            BootstrapContainer();
-        }
+        { BootstrapContainer(); }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Bootstraps this object. </summary>
@@ -146,15 +138,11 @@
                         // throw new Exception("Sample Exception");
                     }
                     catch (Exception ex)
-                    {
-                        Logger?.Error(ex, $"File Name: {file}");
-                    }
+                    { Logger?.Error(ex, $"File Name: {file}"); }
                 }
             }
             catch (Exception ex2)
-            {
-                Logger?.Error(ex2);
-            }
+            { Logger?.Error(ex2); }
 
             container.Verify();
         }
@@ -165,7 +153,7 @@
                 .GetExportedTypes()
                 .Where(type => type.IsClass && !type.IsAbstract
                 && type.Namespace.EndsWith(".Business"))
-                .Select(q => new { service = q.GetInterfaces().LastOrDefault(), implementation = q })
+                .Select(q => new { service = (q.GetInterfaces() ?? new Type[0]).LastOrDefault(), implementation = q })
                 .ToList();
 
             if (registrations == null || registrations.Count < 1)
@@ -179,7 +167,8 @@
 
             foreach (var reg in registrations)
             {
-                container.Register(reg.service, reg.implementation, Lifestyle.Singleton);
+                if (reg.service != null)
+                    container.Register(reg.service, reg.implementation, Lifestyle.Singleton);
             }
         }
     }

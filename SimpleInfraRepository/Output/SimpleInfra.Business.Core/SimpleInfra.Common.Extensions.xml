@@ -5,874 +5,758 @@
     </assembly>
     <members>
         <member name="T:SimpleInfra.Common.Extensions.DictionaryExtensions">
-             <summary>   A dictionary extensions. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.DictionaryExtensions" />.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DictionaryExtensions.GetValueOrDefault``1(System.Collections.Generic.IDictionary{System.String,``0},System.String,``0)">
-             <summary>
-             An IDictionary&lt;string,T&gt; extension method that gets value or default.
-             </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.ArgumentNullException"> Thrown when one or more required arguments are null. </exception>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="dictionary">   The dictionary to act on. </param>
-             <param name="key">          The key. </param>
-             <param name="defaultValue"> The default value. </param>
-            
-             <returns>   The value or default. </returns>
+            <summary>
+            An IDictionary&lt;string,T&gt; extension method that gets value or default.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="dictionary">   The dictionary to act on. .</param>
+            <param name="key">          The key. .</param>
+            <param name="defaultValue"> The default value. .</param>
+            <returns>   The value or default. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DictionaryExtensions.DictionaryToList(System.Collections.Generic.Dictionary{System.String,System.String})">
-             <summary>
-             A Dictionary&lt;string,string&gt; extension method that dictionary to list.
-             </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="dictionary">   The dictionary to act on. </param>
-            
-             <returns>   A List&lt;string&gt; </returns>
+            <summary>
+            A Dictionary&lt;string,string&gt; extension method that dictionary to list.
+            </summary>
+            <param name="dictionary">   The dictionary to act on. .</param>
+            <returns>   A List&lt;string&gt; .</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.DynamicExtensions">
-             <summary>   A dynamic extensions. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.DynamicExtensions" />.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DynamicExtensions.ConvertTo``1(System.Dynamic.ExpandoObject)">
-             <summary>   An ExpandoObject extension method that convert to. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.ArgumentNullException">    Thrown when one or more required arguments are
-                                                         null. </exception>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="dyn">  The dyn to act on. </param>
-            
-             <returns>   to converted. </returns>
+            <summary>
+            The ConvertTo.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="dyn">  The dyn to act on. .</param>
+            <returns>   to converted. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DynamicExtensions.ConvertToV2``1(System.Dynamic.ExpandoObject)">
-             <summary>   An ExpandoObject extension method that converts a dyn to a v 2. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.ArgumentNullException">    Thrown when one or more required arguments are
-                                                         null. </exception>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="dyn">  The dyn to act on. </param>
-            
-             <returns>   The given data converted to a v 2. </returns>
+            <summary>
+            The ConvertToV2.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="dyn">  The dyn to act on. .</param>
+            <returns>   The given data converted to a v 2. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DynamicExtensions.ConvertToList``1(System.Collections.Generic.List{System.Dynamic.ExpandoObject})">
-             <summary>
-             A List&lt;ExpandoObject&gt; extension method that converts a dynList to a list.
-             </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.ArgumentNullException">    Thrown when one or more required arguments are
-                                                         null. </exception>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="dynList">  The dynList to act on. </param>
-            
-             <returns>   The given data converted to a list. </returns>
+            <summary>
+            A List&lt;ExpandoObject&gt; extension method that converts a dynList to a list.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="dynList">  The dynList to act on. .</param>
+            <returns>   The given data converted to a list. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DynamicExtensions.GetValue(System.Dynamic.ExpandoObject,System.String)">
-             <summary>   An ExpandoObject extension method that gets a value. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.ArgumentNullException">    Thrown when one or more required arguments are
-                                                         null. </exception>
-            
-             <param name="expandoObj">   The expandoObj to act on. </param>
-             <param name="key">          The key. </param>
-            
-             <returns>   The value. </returns>
+            <summary>
+            The GetValue.
+            </summary>
+            <param name="expandoObj">   The expandoObj to act on. .</param>
+            <param name="key">          The key. .</param>
+            <returns>   The value. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DynamicExtensions.SetValue(System.Dynamic.ExpandoObject,System.String,System.Object)">
-             <summary>   An ExpandoObject extension method that sets a value. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.ArgumentNullException">    Thrown when one or more required arguments are
-                                                         null. </exception>
-            
-             <param name="expandoObj">   The expandoObj to act on. </param>
-             <param name="key">          The key. </param>
-             <param name="value">        The value. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The SetValue.
+            </summary>
+            <param name="expandoObj">   The expandoObj to act on. .</param>
+            <param name="key">          The key. .</param>
+            <param name="value">        The value. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.DynamicExtensions.ToExpando(System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
-            Extension method that turns a dictionary of string and object to an ExpandoObject
+            Extension method that turns a dictionary of string and object to an ExpandoObject.
             </summary>
+            <param name="dictionary">The dictionary<see cref="!:IDictionary&lt;string, object&gt;"/>.</param>
+            <returns>The <see cref="T:System.Dynamic.ExpandoObject"/>.</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.EnumExtensions">
-             <summary>
-            
-             </summary>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.EnumExtensions" />.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.EnumExtensions.GetDayName(System.DayOfWeek)">
             <summary>
             Gets Day Name of CurrentCulture.
             </summary>
-            <param name="dayOfWeek"></param>
-            <returns></returns>
+            <param name="dayOfWeek">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.EnumExtensions.GetDayName(System.DayOfWeek,System.String)">
             <summary>
             Gets Day Name of given CurrentCulture.
             </summary>
-            <param name="dayOfWeek"></param>
-            <param name="culture">culture name</param>
-            <returns></returns>
+            <param name="dayOfWeek">.</param>
+            <param name="culture">culture name.</param>
+            <returns>.</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.GenericExtensions">
-             <summary>   A generic extensions. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.GenericExtensions" />.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.IsMember``1(``0,``0[])">
-             <summary>   A T extension method that query if 't' ıs member. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.ArgumentNullException">    Thrown when one or more required arguments are
-                                                         null. </exception>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">    The t to act on. </param>
-             <param name="tArr"> A variable-length parameters list containing array. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsMember.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">    The t to act on. .</param>
+            <param name="tArr"> A variable-length parameters list containing array. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.IsDifferent``1(``0,``0)">
-             <summary>   A T extension method that query if 't1' ıs different. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t1">   The t1 to act on. </param>
-             <param name="t2">   The second T. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsDifferent.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t1">   The t1 to act on. .</param>
+            <param name="t2">   The second T. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetValidProperties``1(``0)">
-             <summary>   A T extension method that gets valid properties. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">    The t to act on. </param>
-            
-             <returns>   An array of property İnformation. </returns>
+            <summary>
+            The GetValidProperties.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">    The t to act on. .</param>
+            <returns>   An array of property İnformation. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetPropertyValues``1(``0,System.Boolean)">
-             <summary>   A T extension method that gets the properties. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">    The t to act on. </param>
-             <param name="includeNotMappedProperties"></param>
-            
-             <returns>   The properties. </returns>
+            <summary>
+            The GetPropertyValues.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">    The t to act on. .</param>
+            <param name="includeNotMappedProperties">.</param>
+            <returns>   The properties. .</returns>
+        </member>
+        <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetPropertyValues``1(``0,System.Collections.Generic.List{System.String})">
+            <summary>
+            The GetPropertyValues.
+            </summary>
+            <typeparam name="T">.</typeparam>
+            <param name="t">.</param>
+            <param name="propertyNames">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetColumnsReverse``1(``0)">
-             <summary>   A T extension method that gets columns reverse. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">    The t to act on. </param>
-            
-             <returns>   The columns reverse. </returns>
+            <summary>
+            The GetColumnsReverse.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">    The t to act on. .</param>
+            <returns>   The columns reverse. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetColumns``1(``0)">
-             <summary>   A T extension method that gets the columns. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">    The t to act on. </param>
-            
-             <returns>   The columns. </returns>
+            <summary>
+            The GetColumns.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">    The t to act on. .</param>
+            <returns>   The columns. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetKey``1(``0,System.Boolean)">
-             <summary>   A T extension method that gets a key. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">                The t to act on. </param>
-             <param name="isFirstPropKey">   (Optional) True if is first property key, false if not. </param>
-            
-             <returns>   The key. </returns>
+            <summary>
+            The GetKey.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">                The t to act on. .</param>
+            <param name="isFirstPropKey">   (Optional) True if is first property key, false if not. .</param>
+            <returns>   The key. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetTableName``1(``0)">
-             <summary>   A T extension method that gets table name. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">    The t to act on. </param>
-            
-             <returns>   The table name. </returns>
+            <summary>
+            The GetTableName.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">    The t to act on. .</param>
+            <returns>   The table name. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetSchemaName``1(``0)">
-             <summary>   A T extension method that gets schema name. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">    The t to act on. </param>
-            
-             <returns>   The schema name. </returns>
+            <summary>
+            The GetSchemaName.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">    The t to act on. .</param>
+            <returns>   The schema name. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetPropValue``1(``0,System.String)">
-             <summary>   A T extension method that gets property value. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">        The t to act on. </param>
-             <param name="propName"> Name of the property. </param>
-            
-             <returns>   The property value. </returns>
+            <summary>
+            The GetPropValue.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">        The t to act on. .</param>
+            <param name="propName"> Name of the property. .</param>
+            <returns>   The property value. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.SetPropValue``1(``0,System.String,System.Object)">
-             <summary>   A T extension method that sets property value. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <typeparam name="T">    Generic type parameter. </typeparam>
-             <param name="t">        The t to act on. </param>
-             <param name="propName"> Name of the property. </param>
-             <param name="value">    The value. </param>
+            <summary>
+            The SetPropValue.
+            </summary>
+            <typeparam name="T">    Generic type parameter. .</typeparam>
+            <param name="t">        The t to act on. .</param>
+            <param name="propName"> Name of the property. .</param>
+            <param name="value">    The value. .</param>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.IsNotNullOrDefault``1(``0)">
             <summary>
             if instance is null or default returns false else returns true.
             </summary>
-            <typeparam name="T">Generic Type</typeparam>
-            <param name="instance">Generic Type instance</param>
+            <typeparam name="T">Generic Type.</typeparam>
+            <param name="instance">Generic Type instance.</param>
             <returns>if instance is null or default returns false else returns true.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.GetPropertyValue``1(``0,System.String)">
-             <summary>
-            
-             </summary>
-             <typeparam name="T"></typeparam>
-             <param name="t"></param>
-             <param name="propertyName"></param>
-             <returns></returns>
+            <summary>
+            The GetPropertyValue.
+            </summary>
+            <typeparam name="T">.</typeparam>
+            <param name="t">.</param>
+            <param name="propertyName">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.GenericExtensions.SetPropertyValue``1(``0,System.String,System.Object)">
-             <summary>
-            
-             </summary>
-             <typeparam name="T"></typeparam>
-             <param name="t"></param>
-             <param name="propertyName"></param>
-             <param name="value"></param>
+            <summary>
+            The SetPropertyValue.
+            </summary>
+            <typeparam name="T">.</typeparam>
+            <param name="t">.</param>
+            <param name="propertyName">.</param>
+            <param name="value">.</param>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.ObjectExtension">
-             <summary>   An object extension. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.ObjectExtension" />.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.IsNull(System.Object)">
-             <summary>   An object extension method that query if 'o' is null. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="o">    The o to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsNull.
+            </summary>
+            <param name="o">    The o to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.IsNullOrDbNull(System.Object)">
-             <summary>
-             An object extension method that query if 'obj' is null or database null.
-             </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            An object extension method that query if 'obj' is null or database null.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToStr(System.Object)">
-             <summary>   An object extension method that converts an obj to a string. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as a string. </returns>
+            <summary>
+            The ToStr.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as a string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToInt(System.Object)">
-             <summary>   An object extension method that converts an obj to a int. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an int. </returns>
+            <summary>
+            The ToInt.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an int. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToLong(System.Object)">
-             <summary>   An object extension method that converts an obj to a long nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an long? </returns>
+            <summary>
+            The ToLong.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an long? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToByteNullable(System.Object)">
-             <summary>   An object extension method that converts an obj to a byte nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an byte? </returns>
+            <summary>
+            The ToByteNullable.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an byte? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToShortNullable(System.Object)">
-             <summary>   An object extension method that converts an obj to a short nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an short? </returns>
+            <summary>
+            The ToShortNullable.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an short? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToIntNullable(System.Object)">
-             <summary>   An object extension method that converts an obj to a int nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an int? </returns>
+            <summary>
+            The ToIntNullable.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an int? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToLongNullable(System.Object)">
-             <summary>   An object extension method that converts an obj to a long nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an long? </returns>
+            <summary>
+            The ToLongNullable.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an long? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToDecimalNullable(System.Object)">
-             <summary>   An object extension method that converts an obj to a decimal nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an decimal? </returns>
+            <summary>
+            The ToDecimalNullable.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an decimal? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToDoubleNullable(System.Object)">
-             <summary>   An object extension method that converts an obj to a double nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an double? </returns>
+            <summary>
+            The ToDoubleNullable.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an double? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToFloatNullable(System.Object)">
-             <summary>   An object extension method that converts an obj to a float nullable. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as an float? </returns>
+            <summary>
+            The ToFloatNullable.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as an float? .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToDecimal(System.Object)">
-             <summary>   An object extension method that converts an obj to a decimal. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="obj">  The obj to act on. </param>
-            
-             <returns>   Obj as a decimal. </returns>
+            <summary>
+            The ToDecimal.
+            </summary>
+            <param name="obj">  The obj to act on. .</param>
+            <returns>   Obj as a decimal. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.Char2Int(System.Char)">
-             <summary>   A char extension method that character 2 int. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="ch">   The ch to act on. </param>
-            
-             <returns>   An int. </returns>
+            <summary>
+            The Char2Int.
+            </summary>
+            <param name="ch">   The ch to act on. .</param>
+            <returns>   An int. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.IsNullOrEmpty(System.String)">
-             <summary>   A string extension method that query if 'str' is null or empty. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">  The str to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsNullOrEmpty.
+            </summary>
+            <param name="str">  The str to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.IsNullOrSpace(System.String)">
-             <summary>   A string extension method that query if 'str' is null or space. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">  The str to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsNullOrSpace.
+            </summary>
+            <param name="str">  The str to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.GetValueWithCheckDbNull(System.Object)">
             <summary>
             if value is DbNulll.Value returns null, else return object value.
             </summary>
-            <param name="obj"></param>
-            <returns>Returns object</returns>
+            <param name="obj">.</param>
+            <returns>Returns object.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.ObjectExtension.ToDateTimeNullable(System.Object)">
             <summary>
             Convert object to DateTime nullable.
             </summary>
-            <param name="obj"></param>
-            <returns></returns>
+            <param name="obj">.</param>
+            <returns>.</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.PropertyExtension">
             <summary>
-            
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.PropertyExtension" />.
             </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.PropertyExtension.GetColumnNameOfProperty(System.Reflection.PropertyInfo)">
             <summary>
             get the column attribute value of property, the column attribute no exist return property name.
             </summary>
-            <param name="propertyInfo"></param>
-            <returns></returns>
+            <param name="propertyInfo">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.PropertyExtension.GetKeyProperties(System.Reflection.PropertyInfo[])">
             <summary>
             Get Properties which has Key attribute as array.
             </summary>
-            <param name="properties"></param>
-            <returns></returns>
+            <param name="properties">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.PropertyExtension.GetIdentityProperties(System.Reflection.PropertyInfo[])">
             <summary>
             Get Properties which has Identity attribute as array.
             </summary>
-            <param name="properties"></param>
-            <returns></returns>
+            <param name="properties">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.PropertyExtension.GetNotIdentityProperties(System.Reflection.PropertyInfo[])">
             <summary>
             Get Properties which has not Identity attribute as array.
             </summary>
-            <param name="properties"></param>
-            <returns></returns>
+            <param name="properties">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.PropertyExtension.GetPropertiesByGeneratedOption(System.Reflection.PropertyInfo[],System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption)">
             <summary>
-            
+            The GetPropertiesByGeneratedOption.
             </summary>
-            <param name="properties"></param>
-            <param name="option"></param>
-            <returns></returns>
+            <param name="properties">.</param>
+            <param name="option">.</param>
+            <returns>.</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.StringExtension">
-             <summary>   A string extension. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.StringExtension" />.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.IsValid(System.String)">
-             <summary>   A string extension method that query if 's' ıs valid. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="s">    The s to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsValid.
+            </summary>
+            <param name="s">    The s to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.Len(System.String)">
-             <summary>   A string extension method that lengths the given s. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="s">    The s to act on. </param>
-            
-             <returns>   An int. </returns>
+            <summary>
+            The Len.
+            </summary>
+            <param name="s">    The s to act on. .</param>
+            <returns>   An int. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.TrimAll(System.String)">
-             <summary>   A string extension method that trim all. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="s">    The s to act on. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The Trim All spaces.
+            </summary>
+            <param name="s">    The s to act on. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.FirstIndexOf(System.String,System.Char)">
-             <summary>   A string extension method that first ındex of. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">  The str to act on. </param>
-             <param name="ch">   The ch. </param>
-            
-             <returns>   An int. </returns>
+            <summary>
+            The FirstIndexOf.
+            </summary>
+            <param name="str">  The str to act on. .</param>
+            <param name="ch">   The ch. .</param>
+            <returns>   An int. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.RemoveUnderLineAndCapitalizeString(System.String)">
-             <summary>
-             A string extension method that removes the under line and capitalize string described by
-             str removes underline and point.
-             </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">  The str to act on. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            A string extension method that removes the under line and capitalize string described by
+            str removes underline and point.
+            </summary>
+            <param name="str">  The str to act on. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.CapitalizeEndPart(System.String,System.String)">
-             <summary>   A string extension method that capitalize end part. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">      The str to act on. </param>
-             <param name="endPart">  The end part. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The CapitalizeEndPart.
+            </summary>
+            <param name="str">      The str to act on. .</param>
+            <param name="endPart">  The end part. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.CapitalizeString(System.String)">
-             <summary>   A string extension method that capitalize string. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">  The str to act on. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The CapitalizeString.
+            </summary>
+            <param name="str">  The str to act on. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.RemoveSpaces(System.String)">
-             <summary>   A string extension method that removes the spaces described by str. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">  The str to act on. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The RemoveSpaces.
+            </summary>
+            <param name="str">  The str to act on. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.RemoveChars(System.String,System.Char[])">
-             <summary>   A string extension method that removes the characters. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="str">      The str to act on. </param>
-             <param name="chars">    A variable-length parameters list containing characters. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The RemoveChars.
+            </summary>
+            <param name="str">      The str to act on. .</param>
+            <param name="chars">    A variable-length parameters list containing characters. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.FirstCharToUpper(System.String)">
-             <summary>   A string extension method that first character to upper. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="input">    The input to act on. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The FirstCharToUpper.
+            </summary>
+            <param name="input">    The input to act on. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.FirstCharToLower(System.String)">
-             <summary>   A string extension method that first character to lower. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="input">    The input to act on. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The FirstCharToLower.
+            </summary>
+            <param name="input">    The input to act on. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.UppercaseFirst(System.String)">
-             <summary>   A string extension method that uppercase first. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="s">    The s to act on. </param>
-            
-             <returns>   A string. </returns>
+            <summary>
+            The UppercaseFirst.
+            </summary>
+            <param name="s">    The s to act on. .</param>
+            <returns>   A string. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.RemovewithDictionary(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
-            
+            The RemovewithDictionary.
             </summary>
-            <param name="str"></param>
-            <param name="dictionary"></param>
-            <returns></returns>
+            <param name="str">.</param>
+            <param name="dictionary">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.StringExtension.RemoveTurkishChars(System.String)">
             <summary>
-            The RemoveTurkishChars
+            The RemoveTurkishChars.
             </summary>
-            <param name="s">The s<see cref="T:System.String"/></param>
-            <returns>The <see cref="T:System.String"/></returns>
+            <param name="s">The s<see cref="T:System.String"/>.</param>
+            <returns>The <see cref="T:System.String"/>.</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.TypeExtensions">
-             <summary>   A type extensions. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.TypeExtensions" />.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.IsSimpleType(System.Type)">
-             <summary>
-             Determine whether a type is simple (String, Decimal, DateTime, etc)
-             or complex (i.e. custom class with public properties and methods). source code:
-             https://gist.github.com/jonathanconway/3330614.
-             </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            Determine whether a type is simple (String, Decimal, DateTime, etc)
+            or complex (i.e. custom class with public properties and methods). source code:
+            https://gist.github.com/jonathanconway/3330614.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.IsSimpleTypeV2(System.Type)">
-             <summary>   A Type extension method that query if 'type' ıs simple type v 2. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsSimpleTypeV2.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.ToDbType(System.Type)">
-             <summary>   A Type extension method that converts a type to a database type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   Type as a DbType. </returns>
+            <summary>
+            The ToDbType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   Type as a DbType. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.ToDbType(System.Object)">
             <summary>
-            
+            The ToDbType.
             </summary>
-            <param name="obj"></param>
-            <returns></returns>
+            <param name="obj">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetColumnsOfTypeAsReverse(System.Type)">
-             <summary>   A Type extension method that gets columns of type as reverse. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The columns of type as reverse. </returns>
+            <summary>
+            The GetColumnsOfTypeAsReverse.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The columns of type as reverse. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetKeyOfType(System.Type)">
-             <summary>   A Type extension method that gets key of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The key of type. </returns>
+            <summary>
+            The GetKeyOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The key of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetIdentityPropertyOfType(System.Type)">
-             <summary>   A Type extension method that gets ıdentity property of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The ıdentity property of type. </returns>
+            <summary>
+            The GetIdentityPropertyOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The ıdentity property of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetIdentityPropertyList(System.Type)">
             <summary>
-            
+            The GetIdentityPropertyList.
             </summary>
-            <param name="type"></param>
-            <returns></returns>
+            <param name="type">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetKeyColumnOfType(System.Type)">
-             <summary>   A Type extension method that gets key column of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The key column of type. </returns>
+            <summary>
+            The GetKeyColumnOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The key column of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetPropertyColumnOfType(System.Type,System.String)">
-             <summary>   A Type extension method that gets property column of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <exception cref="T:System.Exception">    Thrown when an exception error condition occurs. </exception>
-            
-             <param name="type">         The type to act on. </param>
-             <param name="propertyName"> Name of the property. </param>
-            
-             <returns>   The property column of type. </returns>
+            <summary>
+            The GetPropertyColumnOfType.
+            </summary>
+            <param name="type">         The type to act on. .</param>
+            <param name="propertyName"> Name of the property. .</param>
+            <returns>   The property column of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetTableNameOfType(System.Type)">
-             <summary>   A Type extension method that gets table name of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The table name of type. </returns>
+            <summary>
+            The GetTableNameOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The table name of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetSchemaNameOfType(System.Type)">
-             <summary>   A Type extension method that gets schema name of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The schema name of type. </returns>
+            <summary>
+            The GetSchemaNameOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The schema name of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetColumnsOfType(System.Type,System.Boolean)">
-             <summary>   A Type extension method that gets columns of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-             <param name="includeNotMappedProperties">if true NotMapped Properties are included, else not.</param>
-            
-             <returns>   The columns of type. </returns>
+            <summary>
+            The GetColumnsOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <param name="includeNotMappedProperties">if true NotMapped Properties are included, else not.</param>
+            <returns>   The columns of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetColumnsReverseOfType(System.Type)">
-             <summary>   A Type extension method that gets columns reverse of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The columns reverse of type. </returns>
+            <summary>
+            The GetColumnsReverseOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The columns reverse of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.IsKeyColumnNumeric(System.Type)">
-             <summary>   A Type extension method that query if 'type' ıs key column numeric. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsKeyColumnNumeric.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetValidPropertiesOfType(System.Type,System.Boolean)">
-             <summary>   A Type extension method that gets valid properties of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-             <param name="includeNotMappedProperties">if true NotMapped Properties are included, else not.</param>
-            
-             <returns>   An array of property İnformation. </returns>
+            <summary>
+            The GetValidPropertiesOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <param name="includeNotMappedProperties">if true NotMapped Properties are included, else not.</param>
+            <returns>   An array of property İnformation. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetValidPropertiesOfTypeV2(System.Type)">
-             <summary>   A Type extension method that gets valid properties of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   An array of property İnformation. </returns>
+            <summary>
+            The GetValidPropertiesOfTypeV2.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   An array of property İnformation. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetPropertyTypesOfType(System.Type)">
-             <summary>   A Type extension method that gets property types of type. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type to act on. </param>
-            
-             <returns>   The property types of type. </returns>
+            <summary>
+            The GetPropertyTypesOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The property types of type. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetSameProperties(System.Type,System.Type)">
             <summary>
             Gets common Properties of two types.
             </summary>
-            <param name="type1">First type</param>
-            <param name="type2">Second type</param>
-            <returns>returns string list</returns>
+            <param name="type1">First type.</param>
+            <param name="type2">Second type.</param>
+            <returns>returns string list.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.IsAnonymousType(System.Type)">
             <summary>
-            check type is anonymous
+            check type is anonymous.
             </summary>
-            <param name="type"></param>
-            <returns></returns>
+            <param name="type">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.CheckIfAnonymousType(System.Type)">
             <summary>
-            check type is anonymous
+            check type is anonymous.
             </summary>
-            <param name="type"></param>
-            <returns></returns>
+            <param name="type">.</param>
+            <returns>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetKeysOfType(System.Type)">
             <summary>
-            
+            The GetKeysOfType.
             </summary>
-            <param name="type"></param>
-            <returns></returns>
+            <param name="type">.</param>
+            <returns>.</returns>
+        </member>
+        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetKeyNamesOfType(System.Type,System.Boolean)">
+            <summary>
+            The GetKeyNamesOfType.
+            </summary>
+            <param name="type">.</param>
+            <param name="includeIdentityProperties">.</param>
+            <returns>.</returns>
+        </member>
+        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetIdentityPropertyNamesOfType(System.Type)">
+            <summary>
+            The GetIdentityPropertyNamesOfType.
+            </summary>
+            <param name="type"> The type to act on. .</param>
+            <returns>   The ıdentity property of type. .</returns>
+        </member>
+        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetKeyPropertiesOfType(System.Type,System.Boolean)">
+            <summary>
+            The GetKeyPropertiesOfType.
+            </summary>
+            <param name="type">The type<see cref="T:System.Type"/>.</param>
+            <param name="includeIdentityProperties">The includeIdentityProperties<see cref="T:System.Boolean"/>.</param>
+            <returns>The <see cref="!:List&lt;string&gt;"/>.</returns>
+        </member>
+        <member name="M:SimpleInfra.Common.Extensions.TypeExtensions.GetIdentityProperties(System.Type)">
+            <summary>
+            Get Properties which has Identity attribute as array.
+            </summary>
+            <param name="type">The type<see cref="T:System.Type"/>.</param>
+            <returns>.</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.TypeHelper">
-             <summary>   A type helper. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.TypeHelper" />.
+            </summary>
+        </member>
+        <member name="F:SimpleInfra.Common.Extensions.TypeHelper.NumericTypes">
+            <summary>
+            Defines the NumericTypes.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.TypeHelper.IsNumeric(System.Type)">
-             <summary>   Query if 'type' is numeric. </summary>
-            
-             <remarks>   Msacli, 22.04.2019. </remarks>
-            
-             <param name="type"> The type. </param>
-            
-             <returns>   True if it succeeds, false if it fails. </returns>
+            <summary>
+            The IsNumeric.
+            </summary>
+            <param name="type"> The type. .</param>
+            <returns>   True if it succeeds, false if it fails. .</returns>
         </member>
         <member name="T:SimpleInfra.Common.Extensions.Objects.MstDictionary">
-             <summary>   MstDictionary. This class cannot be inherited. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Common.Extensions.Objects.MstDictionary" />.
+            </summary>
         </member>
         <member name="F:SimpleInfra.Common.Extensions.Objects.MstDictionary.dictionary">
             <summary>
-            The dictionary.
+            The dictionary..
             </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.#ctor">
-             <summary>   Default constructor. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInfra.Common.Extensions.Objects.MstDictionary"/> class.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
-             <summary>   Constructor. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="dict">   The dictionary. </param>
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInfra.Common.Extensions.Objects.MstDictionary"/> class.
+            </summary>
+            <param name="dict">   The dictionary. .</param>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.#ctor(System.Collections.Generic.IDictionary{System.String,System.Object})">
-             <summary>   Constructor. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="dict">   The dictionary. </param>
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInfra.Common.Extensions.Objects.MstDictionary"/> class.
+            </summary>
+            <param name="dict">   The dictionary. .</param>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.#ctor(System.Dynamic.ExpandoObject)">
-             <summary>   Constructor. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="expando">  The expando. </param>
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleInfra.Common.Extensions.Objects.MstDictionary"/> class.
+            </summary>
+            <param name="expando">  The expando. .</param>
         </member>
         <member name="P:SimpleInfra.Common.Extensions.Objects.MstDictionary.Item(System.String)">
              <summary>   Gets or sets the element with the specified key. </summary>
@@ -882,164 +766,112 @@
              <returns>   The element with the specified key. </returns>
         </member>
         <member name="P:SimpleInfra.Common.Extensions.Objects.MstDictionary.Count">
-             <summary>   Gets the number of.  </summary>
-            
-             <value> The count. </value>
+            <summary>
+            Gets the Count.
+            </summary>
         </member>
         <member name="P:SimpleInfra.Common.Extensions.Objects.MstDictionary.IsReadOnly">
-             <summary>   Gets a value indicating whether the ıs read only. </summary>
-            
-             <value> True if ıs read only, false if not. </value>
+            <summary>
+            Gets a value indicating whether IsReadOnly.
+            </summary>
         </member>
         <member name="P:SimpleInfra.Common.Extensions.Objects.MstDictionary.Keys">
-             <summary>
-             Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the
-             <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </summary>
-            
-             <value>
-             An <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the
-             object that implements <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </value>
+            <summary>
+            Gets the Keys
+            Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the keys of the
+            <see cref="T:System.Collections.Generic.IDictionary`2" />..
+            </summary>
         </member>
         <member name="P:SimpleInfra.Common.Extensions.Objects.MstDictionary.Values">
-             <summary>
-             Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in
-             the <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </summary>
-            
-             <value>
-             An <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in the
-             object that implements <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </value>
+            <summary>
+            Gets the Values
+            Gets an <see cref="T:System.Collections.Generic.ICollection`1" /> containing the values in
+            the <see cref="T:System.Collections.Generic.IDictionary`2" />..
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
-             <summary>
-             Adds an element with the provided key and value to the
-             <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="item"> The item to remove. </param>
+            <summary>
+            Adds an element with the provided key and value to the
+            <see cref="T:System.Collections.Generic.IDictionary`2" />.
+            </summary>
+            <param name="item"> The item to remove. .</param>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.Add(System.String,System.Object)">
-             <summary>
-             Adds an element with the provided key and value to the
-             <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="key">      The object to use as the key of the element to add. </param>
-             <param name="value">    The object to use as the value of the element to add. </param>
+            <summary>
+            Adds an element with the provided key and value to the
+            <see cref="T:System.Collections.Generic.IDictionary`2" />.
+            </summary>
+            <param name="key">      The object to use as the key of the element to add. .</param>
+            <param name="value">    The object to use as the value of the element to add. .</param>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.Clear">
-             <summary>   Clears this object to its blank/initial state. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
+            <summary>
+            The Clear.
+            </summary>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
-             <summary>   Query if this object contains the given item. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="item"> The item to remove. </param>
-            
-             <returns>   True if the object is in this collection, false if not. </returns>
+            <summary>
+            The Contains.
+            </summary>
+            <param name="item"> The item to remove. .</param>
+            <returns>   True if the object is in this collection, false if not. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.ContainsKey(System.String)">
-             <summary>
-             Determines whether the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an
-             element with the specified key.
-             </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="key">  The key to locate in the
-                                 <see cref="T:System.Collections.Generic.IDictionary`2" />. </param>
-            
-             <returns>
-             true if the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an element
-             with the key; otherwise, false.
-             </returns>
+            <summary>
+            Determines whether the <see cref="T:System.Collections.Generic.IDictionary`2" /> contains an
+            element with the specified key.
+            </summary>
+            <param name="key">The key<see cref="T:System.String"/>.</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.Int32)">
-             <summary>   Copies to. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="array">        The array. </param>
-             <param name="arrayIndex">   The array ındex. </param>
+            <summary>
+            The CopyTo.
+            </summary>
+            <param name="array">        The array. .</param>
+            <param name="arrayIndex">   The array ındex. .</param>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.GetEnumerator">
-             <summary>   Gets the enumerator. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <returns>   The enumerator. </returns>
+            <summary>
+            The GetEnumerator.
+            </summary>
+            <returns>   The enumerator. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
-             <summary>
-             Removes the element with the specified key from the
-             <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="item"> The item to remove. </param>
-            
-             <returns>
-             true if the element is successfully removed; otherwise, false.  This method also returns
-             false if <paramref name="item" /> was not found in the original
-             <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </returns>
+            <summary>
+            Removes the element with the specified key from the
+            <see cref="T:System.Collections.Generic.IDictionary`2" />.
+            </summary>
+            <param name="item"> The item to remove. .</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.Remove(System.String)">
-             <summary>
-             Removes the element with the specified key from the
-             <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="key">  The key of the element to remove. </param>
-            
-             <returns>
-             true if the element is successfully removed; otherwise, false.  This method also returns
-             false if <paramref name="key" /> was not found in the original
-             <see cref="T:System.Collections.Generic.IDictionary`2" />.
-             </returns>
+            <summary>
+            Removes the element with the specified key from the
+            <see cref="T:System.Collections.Generic.IDictionary`2" />.
+            </summary>
+            <param name="key">  The key of the element to remove. .</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.TryGetValue(System.String,System.Object@)">
-             <summary>   Gets the value associated with the specified key. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <param name="key">      The key whose value to get. </param>
-             <param name="value">    [out] When this method returns, the value associated with the
-                                     specified key, if the key is found; otherwise, the default value for the
-                                     type of the <paramref name="value" /> parameter. This parameter is passed
-                                     uninitialized. </param>
-            
-             <returns>
-             true if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2" />
-             contains an element with the specified key; otherwise, false.
-             </returns>
+            <summary>
+            The TryGetValue.
+            </summary>
+            <param name="key">      The key whose value to get. .</param>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.System#Collections#IEnumerable#GetEnumerator">
-             <summary>   Gets the enumerator. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <returns>   The enumerator. </returns>
+            <summary>
+            The GetEnumerator.
+            </summary>
+            <returns>   The enumerator. .</returns>
         </member>
         <member name="M:SimpleInfra.Common.Extensions.Objects.MstDictionary.AsDictionary">
-             <summary>   Gets the content. </summary>
-            
-             <remarks>   Msacli, 7.05.2019. </remarks>
-            
-             <returns>   The content. </returns>
+            <summary>
+            The AsDictionary.
+            </summary>
+            <returns>   The content. .</returns>
         </member>
     </members>
 </doc>

@@ -24,7 +24,7 @@ namespace SimpleInfra.Data
     public abstract partial class SimpleBaseDataRepository<T> : ISimpleDataRepository<T> where T : class
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public event ContextDisposedHandler DisposedHandler;
 
@@ -380,7 +380,7 @@ namespace SimpleInfra.Data
         ///     to the context and returned. If no entity is found in the context or the store,
         ///     then null is returned.
         /// </summary>
-        /// <remarks> 
+        /// <remarks>
         /// The ordering of composite key values is as defined in the EDM, which is in turn
         ///     as defined in the designer, by the Code First fluent API, or by the DataMember
         ///     attribute.
@@ -765,7 +765,7 @@ namespace SimpleInfra.Data
         /// <remarks>   Msacli, 30.04.2019. </remarks>
         ///
         /// <param name="disposing">
-        /// True to release both managed and unmanaged resources; false to release only unmanaged resources. 
+        /// True to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         protected virtual void Dispose(bool disposing)

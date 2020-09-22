@@ -11,21 +11,21 @@
     public interface ISimpleBaseBusiness<TDto> where TDto : SimpleBaseDto
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         SimpleResponse<TDto> Create(TDto entity);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="oid"></param>
         /// <returns></returns>
         SimpleResponse<TDto> Read(object oid);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>

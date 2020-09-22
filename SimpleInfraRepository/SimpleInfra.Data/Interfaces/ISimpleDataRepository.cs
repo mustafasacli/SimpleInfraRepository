@@ -8,7 +8,7 @@ namespace SimpleInfra.Data
     using System.Linq.Expressions;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="eventargs"></param>
@@ -24,7 +24,7 @@ namespace SimpleInfra.Data
     public interface ISimpleDataRepository<T> : ISimpleDataAsyncRepository<T>, IDisposable where T : class
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         event ContextDisposedHandler DisposedHandler;
 
@@ -159,7 +159,7 @@ namespace SimpleInfra.Data
         ///     to the context and returned. If no entity is found in the context or the store,
         ///     then null is returned.
         /// </summary>
-        /// <remarks> 
+        /// <remarks>
         /// The ordering of composite key values is as defined in the EDM, which is in turn
         ///     as defined in the designer, by the Code First fluent API, or by the DataMember
         ///     attribute.

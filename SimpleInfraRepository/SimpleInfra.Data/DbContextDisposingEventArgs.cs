@@ -4,12 +4,12 @@
     using System.Data.Entity;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class DbContextDisposingEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="context"></param>
         public DbContextDisposingEventArgs(DbContext context)

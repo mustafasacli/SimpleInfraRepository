@@ -11,25 +11,25 @@
             <typeparam name="TDto"></typeparam>
         </member>
         <member name="M:SimpleInfra.Business.Interfaces.Core.ISimpleBaseBusiness`1.Create(`0)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="entity"></param>
-            <returns></returns>
+             </summary>
+             <param name="entity"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Business.Interfaces.Core.ISimpleBaseBusiness`1.Read(System.Object)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
+             </summary>
+             <param name="oid"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Business.Interfaces.Core.ISimpleBaseBusiness`1.Update(`0)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="entity"></param>
-            <returns></returns>
+             </summary>
+             <param name="entity"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Business.Interfaces.Core.ISimpleBaseBusiness`1.Delete(`0)">
             <summary>

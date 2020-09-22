@@ -5,15 +5,15 @@
     </assembly>
     <members>
         <member name="T:SimpleInfra.Data.DbContextDisposingEventArgs">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="M:SimpleInfra.Data.DbContextDisposingEventArgs.#ctor(System.Data.Entity.DbContext)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="context"></param>
+             </summary>
+             <param name="context"></param>
         </member>
         <member name="P:SimpleInfra.Data.DbContextDisposingEventArgs.Context">
             <summary>
@@ -116,11 +116,11 @@
             <returns></returns>
         </member>
         <member name="T:SimpleInfra.Data.ContextDisposedHandler">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="sender"></param>
-            <param name="eventargs"></param>
+             </summary>
+             <param name="sender"></param>
+             <param name="eventargs"></param>
         </member>
         <member name="T:SimpleInfra.Data.ISimpleDataRepository`1">
              <summary>   Interface for simple data repository. </summary>
@@ -130,9 +130,9 @@
              <typeparam name="T">    Generic type parameter. </typeparam>
         </member>
         <member name="E:SimpleInfra.Data.ISimpleDataRepository`1.DisposedHandler">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:SimpleInfra.Data.ISimpleDataRepository`1.SimpleRepoLogger">
              <summary>   Gets the simple repo logger. </summary>
@@ -234,7 +234,7 @@
                 to the context and returned. If no entity is found in the context or the store,
                 then null is returned.
             </summary>
-            <remarks> 
+            <remarks>
             The ordering of composite key values is as defined in the EDM, which is in turn
                 as defined in the designer, by the Code First fluent API, or by the DataMember
                 attribute.
@@ -438,77 +438,77 @@
              <typeparam name="T">    Generic type parameter. </typeparam>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="predicate"></param>
-            <param name="asNoTracking"></param>
-            <returns></returns>
+             </summary>
+             <param name="predicate"></param>
+             <param name="asNoTracking"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.FirstAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="predicate"></param>
-            <param name="asNoTracking"></param>
-            <returns></returns>
+             </summary>
+             <param name="predicate"></param>
+             <param name="asNoTracking"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.FirstOrDefaultAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="predicate"></param>
-            <param name="asNoTracking"></param>
-            <returns></returns>
+             </summary>
+             <param name="predicate"></param>
+             <param name="asNoTracking"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
+             </summary>
+             <param name="predicate"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="predicate"></param>
-            <returns></returns>
+             </summary>
+             <param name="predicate"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.ExecuteSqlCommandAsync(System.String,System.Object[])">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
+             </summary>
+             <param name="sql"></param>
+             <param name="parameters"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.ExecuteSqlCommandAsync(System.Data.Entity.TransactionalBehavior,System.String,System.Object[])">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="transactionalBehavior"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
+             </summary>
+             <param name="transactionalBehavior"></param>
+             <param name="sql"></param>
+             <param name="parameters"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.GetByIdAsync(System.Object[])">
-            <summary>
+             <summary>
             
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
+             </summary>
+             <param name="oid"></param>
+             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.SaveChangesAsync">
-            <summary>
+             <summary>
             
-            </summary>
-            <returns></returns>
+             </summary>
+             <returns></returns>
         </member>
         <member name="E:SimpleInfra.Data.SimpleBaseDataRepository`1.DisposedHandler">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="F:SimpleInfra.Data.SimpleBaseDataRepository`1.dbContext">
             <summary>
@@ -664,7 +664,7 @@
                 to the context and returned. If no entity is found in the context or the store,
                 then null is returned.
             </summary>
-            <remarks> 
+            <remarks>
             The ordering of composite key values is as defined in the EDM, which is in turn
                 as defined in the designer, by the Code First fluent API, or by the DataMember
                 attribute.
@@ -860,7 +860,7 @@
              <remarks>   Msacli, 30.04.2019. </remarks>
             
              <param name="disposing">
-             True to release both managed and unmanaged resources; false to release only unmanaged resources. 
+             True to release both managed and unmanaged resources; false to release only unmanaged resources.
              </param>
         </member>
         <member name="M:SimpleInfra.Data.SimpleBaseDataRepository`1.Dispose">

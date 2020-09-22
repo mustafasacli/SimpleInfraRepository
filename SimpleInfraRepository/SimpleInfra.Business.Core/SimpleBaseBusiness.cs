@@ -1,15 +1,16 @@
 ﻿namespace SimpleInfra.Business.Core
 {
-    using SimpleInfra.Dto.Core;
-    using SimpleInfra.IoC;
     using SimpleFileLogging;
     using SimpleFileLogging.Enums;
     using SimpleFileLogging.Interfaces;
+    using SimpleInfra.Business.Interfaces.Core;
     using SimpleInfra.Common.Core;
     using SimpleInfra.Common.Extensions;
     using SimpleInfra.Common.Response;
     using SimpleInfra.Data;
+    using SimpleInfra.Dto.Core;
     using SimpleInfra.Entity.Core;
+    using SimpleInfra.IoC;
     using SimpleInfra.Mapping;
     using SimpleInfra.UoW;
     using SimpleInfra.UoW.Interfaces;
@@ -18,7 +19,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-    using SimpleInfra.Business.Interfaces.Core;
 
     /// <summary>
     /// Gsb Base Business class.
@@ -69,15 +69,10 @@
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         protected ISimpleUnitOfWork SimpleUnitOfWork
-        {
-            get
-            {
-                return lazyInstance.Value;
-            }
-        }
+        { get { return lazyInstance.Value; } }
 
         /// <summary>
         /// Creates new repository.
@@ -111,9 +106,7 @@
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         protected T GetInstance<T>() where T : class
-        {
-            return SimpleIoC.Instance.GetInstance<T>();
-        }
+        { return SimpleIoC.Instance.GetInstance<T>(); }
 
         /// <summary>
         /// Insert record internally.
@@ -145,12 +138,9 @@
             using (var repo = GetRepository())
             {
                 repo.Add(entity);
-                response.ResponseCode = repo.SaveChanges();
+                if (autoSave)
+                    response.ResponseCode = repo.SaveChanges();
             }
-            //Repository.Add(entity);
-
-            //if (autoSave)
-            //    response.ResponseCode = Repository.SaveChanges();
 
             var result = Map(entity);
             response.Data = result;
@@ -192,8 +182,6 @@
                 if (autoSave)
                     response.ResponseCode = repo.SaveChanges();
             }
-            //var result = Map(ent);
-            //response.Data = result;
 
             return response;
         }
@@ -571,7 +559,7 @@
 
         private bool disposed = false;
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)

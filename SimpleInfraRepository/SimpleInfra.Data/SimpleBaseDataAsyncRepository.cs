@@ -23,7 +23,7 @@ namespace SimpleInfra.Data
     public abstract partial class SimpleBaseDataRepository<T> : ISimpleDataRepository<T> where T : class
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="predicate"></param>
         /// <param name="asNoTracking"></param>
@@ -46,7 +46,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="predicate"></param>
         /// <param name="asNoTracking"></param>
@@ -69,7 +69,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="predicate"></param>
         /// <param name="asNoTracking"></param>
@@ -92,7 +92,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
@@ -102,7 +102,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
@@ -123,7 +123,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="transactionalBehavior"></param>
         /// <param name="sql"></param>
@@ -135,7 +135,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="oid"></param>
         /// <returns></returns>
@@ -154,7 +154,7 @@ namespace SimpleInfra.Data
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public Task<int> SaveChangesAsync()

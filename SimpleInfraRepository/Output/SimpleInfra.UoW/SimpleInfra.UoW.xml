@@ -10,9 +10,9 @@
             </summary>
         </member>
         <member name="M:SimpleInfra.UoW.SimpleUnitOfWork.#ctor">
-            <summary>
+             <summary>
             
-            </summary>
+             </summary>
         </member>
         <member name="P:SimpleInfra.UoW.SimpleUnitOfWork.Logger">
             <summary>
@@ -25,6 +25,13 @@
             </summary>
             <typeparam name="T"></typeparam>
             <returns>Returns ISimpleDataRepository instance.</returns>
+        </member>
+        <member name="M:SimpleInfra.UoW.SimpleUnitOfWork.IsContextDisposedOrNull(System.Data.Entity.DbContext)">
+            <summary>
+            Checks dbcontext is nul or disposed.
+            </summary>
+            <param name="dbContext"></param>
+            <returns></returns>
         </member>
         <member name="F:SimpleInfra.UoW.SimpleUnitOfWorkCache.contextTypes">
             <summary>
