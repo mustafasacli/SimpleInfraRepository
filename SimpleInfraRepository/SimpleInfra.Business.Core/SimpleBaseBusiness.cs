@@ -25,7 +25,7 @@
     /// </summary>
     /// <typeparam name="TDto"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
-    public abstract class SimpleBaseBusiness<TDto, TEntity/*, TRepository*/> : ISimpleBaseBusiness<TDto>, IDisposable
+    public abstract class SimpleBaseBusiness<TDto, TEntity/*, TRepository*/> : ISimpleBaseBusiness<TDto, TEntity>, IDisposable
             where TDto : SimpleBaseDto, new()
             where TEntity : SimpleBaseEntity, new()
         //where TRepository : ISimpleDataRepository<TEntity>, new()
@@ -69,7 +69,6 @@
         }
 
         /// <summary>
-        ///
         /// </summary>
         protected ISimpleUnitOfWork SimpleUnitOfWork
         { get { return lazyInstance.Value; } }
@@ -109,9 +108,8 @@
         { return SimpleIoC.Instance.GetInstance<T>(); }
 
         /// <summary>
-        /// Insert record internally.
-        /// Dto nesnesini, entity nesnesine dönüştürüp veritabanına kaydeder.
-        /// sonuç olarak SimpleResponse{Dto} nesnesini döner.
+        /// Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+        /// kaydeder. sonuç olarak SimpleResponse{Dto} nesnesini döner.
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="autoSave"></param>
@@ -135,12 +133,9 @@
                 };
             }
 
-            using (var repo = GetRepository())
-            {
-                repo.Add(entity);
-                if (autoSave)
-                    response.ResponseCode = repo.SaveChanges();
-            }
+            this.Repository.Add(entity);
+            if (autoSave)
+                response.ResponseCode = this.Repository.SaveChanges();
 
             var result = Map(entity);
             response.Data = result;
@@ -149,9 +144,8 @@
         }
 
         /// <summary>
-        /// Insert record internally.
-        /// Dto nesnesini, entity nesnesine dönüştürüp veritabanına kaydeder.
-        /// sonuç olarak SimpleResponse nesnesini döner.
+        /// Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+        /// kaydeder. sonuç olarak SimpleResponse nesnesini döner.
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="autoSave"></param>
@@ -175,13 +169,10 @@
                 };
             }
 
-            using (var repo = GetRepository())
-            {
-                repo.Add(entity);
+            this.Repository.Add(entity);
 
-                if (autoSave)
-                    response.ResponseCode = repo.SaveChanges();
-            }
+            if (autoSave)
+                response.ResponseCode = this.Repository.SaveChanges();
 
             return response;
         }
@@ -199,13 +190,11 @@
                 return response;
 
             var entityList = MapListReverse(dtoList);
-            using (var repo = GetRepository())
-            {
-                repo.AddRange(entityList);
 
-                if (autoSave)
-                    response.ResponseCode = repo.SaveChanges();
-            }
+            this.Repository.AddRange(entityList);
+
+            if (autoSave)
+                response.ResponseCode = this.Repository.SaveChanges();
 
             var result = MapList(entityList);
             response.Data = result;
@@ -238,13 +227,10 @@
                 };
             }
 
-            using (var repo = GetRepository())
-            {
-                repo.Update(entity);
+            this.Repository.Update(entity);
 
-                if (autoSave)
-                    response.ResponseCode = repo.SaveChanges();
-            }
+            if (autoSave)
+                response.ResponseCode = this.Repository.SaveChanges();
 
             var result = Map(entity);
             response.Data = result;
@@ -266,13 +252,12 @@
                 return response;
 
             var entList = MapListReverse(dtoList) ?? new List<TEntity>();
-            using (var repo = GetRepository())
-            {
-                repo.UpdateRange(entList);
 
-                if (autoSave)
-                    response.ResponseCode = repo.SaveChanges();
-            }
+            this.Repository.UpdateRange(entList);
+
+            if (autoSave)
+                response.ResponseCode = this.Repository.SaveChanges();
+
             var result = MapList(entList);
             response.Data = result;
 
@@ -296,39 +281,38 @@
             var deleteProperty = typeof(TEntity).GetProperty(SimpleValues.DeletePropertyName);
             var keys = typeof(TEntity).GetKeysOfType().ToList();//.GetKeyNamesOfType(includeIdentityProperties: true);
             TEntity ent = null;
-            using (var repo = GetRepository())
+
+            if (keys.Count > 0)
             {
-                if (keys.Count > 0)
+                var values = new object[keys.Count];
+                int indx = 0;
+                keys.ForEach(q => { values[indx++] = tmpEnt.GetPropertyValue(q); });
+                //tmpEnt.GetPropertyValues(keys);
+
+                if (values.Length > 0)
+                    ent = this.Repository.Find(values);
+
+                if (ent == null)
                 {
-                    var values = new object[keys.Count];
-                    int indx = 0;
-                    keys.ForEach(q => { values[indx++] = tmpEnt.GetPropertyValue(q); });
-                    //tmpEnt.GetPropertyValues(keys);
-
-                    if (values.Length > 0)
-                        ent = repo.Find(values);
-
-                    if (ent == null)
-                    {
-                        return new SimpleResponse<TDto> { Data = dto, ResponseCode = BusinessResponseValues.NullEntityValue };
-                    }
+                    return new SimpleResponse<TDto> { Data = dto, ResponseCode = BusinessResponseValues.NullEntityValue };
                 }
-                else
-                    ent = tmpEnt;
-
-                if (deleteProperty != null)
-                {
-                    deleteProperty.SetValue(ent, 1, null);
-                    repo.Update(ent);
-                }
-                else
-                {
-                    repo.Delete(ent);
-                }
-
-                if (autoSave)
-                    response.ResponseCode = repo.SaveChanges();
             }
+            else
+                ent = tmpEnt;
+
+            if (deleteProperty != null)
+            {
+                deleteProperty.SetValue(ent, 1, null);
+                this.Repository.Update(ent);
+            }
+            else
+            {
+                this.Repository.Delete(ent);
+            }
+
+            if (autoSave)
+                response.ResponseCode = this.Repository.SaveChanges();
+
             response.Data = dto;
             return response;
         }
@@ -349,50 +333,47 @@
 
             var keys = typeof(TEntity).GetKeysOfType().ToList();//GetKeyNamesOfType(includeIdentityProperties: true);
 
-            using (var repo = GetRepository())
+            if (keys.Count > 0)
             {
-                if (keys.Count > 0)
+                var entList = new List<TEntity>();
+                for (int counter = 0; counter < deleteList.Count; counter++)
                 {
-                    var entList = new List<TEntity>();
-                    for (int counter = 0; counter < deleteList.Count; counter++)
-                    {
-                        var values = new object[keys.Count];
-                        int indx = 0;
-                        keys.ForEach(q => { values[indx++] = deleteList[counter].GetPropertyValue(q); });
-                        //var values = deleteList[counter].GetPropertyValues(keys);
-                        if (values.Length == 0) continue;
+                    var values = new object[keys.Count];
+                    int indx = 0;
+                    keys.ForEach(q => { values[indx++] = deleteList[counter].GetPropertyValue(q); });
+                    //var values = deleteList[counter].GetPropertyValues(keys);
+                    if (values.Length == 0) continue;
 
-                        var entity = repo.Find(values);
-                        if (entity == null) continue;
+                    var entity = this.Repository.Find(values);
+                    if (entity == null) continue;
 
-                        entList.Add(entity);
-                    }
-
-                    deleteList.Clear();
-                    deleteList.AddRange(entList);
+                    entList.Add(entity);
                 }
 
-                var deleteProperty = typeof(TEntity).GetProperty(SimpleValues.DeletePropertyName);
-                var isDeleteOrUpdate = true;
-                if (deleteProperty != null)
-                {
-                    for (int counter = 0; counter < deleteList.Count; counter++)
-                    {
-                        var entity = deleteList[counter];
-                        deleteProperty.SetValue(entity, 1, null);
-                        deleteList[counter] = entity;
-                    }
-                    isDeleteOrUpdate = false;
-                }
-
-                if (isDeleteOrUpdate)
-                    repo.DeleteRange(deleteList);
-                else
-                    repo.UpdateRange(deleteList);
-
-                if (autoSave)
-                    response.ResponseCode = repo.SaveChanges();
+                deleteList.Clear();
+                deleteList.AddRange(entList);
             }
+
+            var deleteProperty = typeof(TEntity).GetProperty(SimpleValues.DeletePropertyName);
+            var isDeleteOrUpdate = true;
+            if (deleteProperty != null)
+            {
+                for (int counter = 0; counter < deleteList.Count; counter++)
+                {
+                    var entity = deleteList[counter];
+                    deleteProperty.SetValue(entity, 1, null);
+                    deleteList[counter] = entity;
+                }
+                isDeleteOrUpdate = false;
+            }
+
+            if (isDeleteOrUpdate)
+                this.Repository.DeleteRange(deleteList);
+            else
+                this.Repository.UpdateRange(deleteList);
+
+            if (autoSave)
+                response.ResponseCode = this.Repository.SaveChanges();
 
             response.Data = dtoList;
             return response;
@@ -407,12 +388,10 @@
             List<TDto> dtos;
             List<TEntity> entities;
 
-            using (var repo = GetRepository())
-            {
-                entities = repo
-                    .GetAll(asNoTracking: true)
-                    .ToList() ?? new List<TEntity>();
-            }
+            entities = this.Repository
+                .GetAll(asNoTracking: true)
+                .ToList() ?? new List<TEntity>();
+
             dtos = MapList(entities) ?? new List<TDto>();
 
             var response = new SimpleResponse<List<TDto>> { Data = dtos };
@@ -433,8 +412,7 @@
         {
             TEntity entity = null;
 
-            using (var repo = GetRepository())
-            { entity = repo.Single(predicate, asNoTracking: asNoTracking); }
+            entity = this.Repository.Single(predicate, asNoTracking: asNoTracking);
 
             return entity;
         }
@@ -461,8 +439,7 @@
         {
             TEntity entity = null;
 
-            using (var repo = GetRepository())
-            { entity = repo.FirstOrDefault(predicate, asNoTracking: asNoTracking); }
+            entity = this.Repository.FirstOrDefault(predicate, asNoTracking: asNoTracking);
 
             return entity;
         }
@@ -511,7 +488,7 @@
             SimpleMapper.MapTo(entity, dto);
         }
 
-        //
+
         /// <summary>
         /// Maps data transfer object to entity.
         /// </summary>
@@ -554,12 +531,11 @@
             return result;
         }
 
-
         #region IDisposable Members
 
         private bool disposed = false;
+
         /// <summary>
-        ///
         /// </summary>
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
@@ -586,14 +562,14 @@
 
         #endregion IDisposable Members
 
-        public abstract SimpleResponse<TDto> Create(TDto entity);
+        //public abstract SimpleResponse<TDto> Create(TDto entity);
 
-        public abstract SimpleResponse<TDto> Read(object oid);
+        //public abstract SimpleResponse<TDto> Read(object oid);
 
-        public abstract SimpleResponse Update(TDto entity);
+        //public abstract SimpleResponse Update(TDto entity);
 
-        public abstract SimpleResponse Delete(TDto entity);
+        //public abstract SimpleResponse Delete(TDto entity);
 
-        public abstract SimpleResponse<List<TDto>> ReadAll();
+        //public abstract SimpleResponse<List<TDto>> ReadAll();
     }
 }

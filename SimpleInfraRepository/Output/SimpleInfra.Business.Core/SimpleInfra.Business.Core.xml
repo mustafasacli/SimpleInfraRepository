@@ -17,9 +17,8 @@
             </summary>
         </member>
         <member name="P:SimpleInfra.Business.Core.SimpleBaseBusiness`2.SimpleUnitOfWork">
-             <summary>
-            
-             </summary>
+            <summary>
+            </summary>
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.GetRepository">
             <summary>
@@ -46,9 +45,8 @@
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.InsertInternal(`0,System.Boolean)">
             <summary>
-            Insert record internally.
-            Dto nesnesini, entity nesnesine dönüştürüp veritabanına kaydeder.
-            sonuç olarak SimpleResponse{Dto} nesnesini döner.
+            Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+            kaydeder. sonuç olarak SimpleResponse{Dto} nesnesini döner.
             </summary>
             <param name="dto"></param>
             <param name="autoSave"></param>
@@ -56,9 +54,8 @@
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.InsertInternalDontReturnDto(`0,System.Boolean)">
             <summary>
-            Insert record internally.
-            Dto nesnesini, entity nesnesine dönüştürüp veritabanına kaydeder.
-            sonuç olarak SimpleResponse nesnesini döner.
+            Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+            kaydeder. sonuç olarak SimpleResponse nesnesini döner.
             </summary>
             <param name="dto"></param>
             <param name="autoSave"></param>
@@ -189,10 +186,9 @@
             <returns></returns>
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.Dispose(System.Boolean)">
-             <summary>
-            
-             </summary>
-             <param name="disposing"></param>
+            <summary>
+            </summary>
+            <param name="disposing"></param>
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.Dispose">
             <summary>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleInfra.Entity.Core</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleInfra.Entity.Core.Interfaces.IEntityAdd">
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Entity.Core.Interfaces.IEntityAdd" />
+            </summary>
+        </member>
+        <member name="T:SimpleInfra.Entity.Core.Interfaces.IEntityUpdate">
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Entity.Core.Interfaces.IEntityUpdate" />
+            </summary>
+        </member>
+        <member name="T:SimpleInfra.Entity.Core.SimpleBaseEntity">
+            <summary>
+            Defines the <see cref="T:SimpleInfra.Entity.Core.SimpleBaseEntity" />
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,15 +1,18 @@
 ﻿namespace SimpleInfra.Business.Interfaces.Core
 {
-    using SimpleInfra.Common.Response;
     using SimpleInfra.Dto.Core;
-    using System.Collections.Generic;
+    using SimpleInfra.Entity.Core;
 
     /// <summary>
     /// Base Generic Business Interface.
     /// </summary>
     /// <typeparam name="TDto"></typeparam>
-    public interface ISimpleBaseBusiness<TDto> where TDto : SimpleBaseDto
+    /// <typeparam name="TEntity"></typeparam>
+    public interface ISimpleBaseBusiness<TDto, TEntity>
+        where TDto : SimpleBaseDto, new()
+           where TEntity : SimpleBaseEntity, new()
     {
+        /*
         /// <summary>
         ///
         /// </summary>
@@ -43,5 +46,6 @@
         /// </summary>
         /// <returns></returns>
         SimpleResponse<List<TDto>> ReadAll();
+        */
     }
 }
