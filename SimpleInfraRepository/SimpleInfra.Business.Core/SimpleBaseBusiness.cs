@@ -108,7 +108,8 @@
         { return SimpleIoC.Instance.GetInstance<T>(); }
 
         /// <summary>
-        /// Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+        /// Insert record internally and returns Dto object.
+        /// Dto nesnesini, entity nesnesine dönüştürüp veritabanına
         /// kaydeder. sonuç olarak SimpleResponse{Dto} nesnesini döner.
         /// </summary>
         /// <param name="dto"></param>
@@ -144,7 +145,8 @@
         }
 
         /// <summary>
-        /// Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+        /// Insert record internally and returns save response.
+        /// Dto nesnesini, entity nesnesine dönüştürüp veritabanına
         /// kaydeder. sonuç olarak SimpleResponse nesnesini döner.
         /// </summary>
         /// <param name="dto"></param>
@@ -410,9 +412,7 @@
         /// <returns>returns entity instance if predicate condition true.</returns>
         protected TEntity ReadSingle(Expression<Func<TEntity, bool>> predicate, bool asNoTracking = false)
         {
-            TEntity entity = null;
-
-            entity = this.Repository.Single(predicate, asNoTracking: asNoTracking);
+            TEntity entity = this.Repository.Single(predicate, asNoTracking: asNoTracking);
 
             return entity;
         }
@@ -536,6 +536,7 @@
         private bool disposed = false;
 
         /// <summary>
+        /// Disposes object.
         /// </summary>
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
@@ -561,15 +562,5 @@
         }
 
         #endregion IDisposable Members
-
-        //public abstract SimpleResponse<TDto> Create(TDto entity);
-
-        //public abstract SimpleResponse<TDto> Read(object oid);
-
-        //public abstract SimpleResponse Update(TDto entity);
-
-        //public abstract SimpleResponse Delete(TDto entity);
-
-        //public abstract SimpleResponse<List<TDto>> ReadAll();
     }
 }

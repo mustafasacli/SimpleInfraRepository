@@ -45,7 +45,8 @@
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.InsertInternal(`0,System.Boolean)">
             <summary>
-            Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+            Insert record internally and returns Dto object.
+            Dto nesnesini, entity nesnesine dönüştürüp veritabanına
             kaydeder. sonuç olarak SimpleResponse{Dto} nesnesini döner.
             </summary>
             <param name="dto"></param>
@@ -54,7 +55,8 @@
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.InsertInternalDontReturnDto(`0,System.Boolean)">
             <summary>
-            Insert record internally. Dto nesnesini, entity nesnesine dönüştürüp veritabanına
+            Insert record internally and returns save response.
+            Dto nesnesini, entity nesnesine dönüştürüp veritabanına
             kaydeder. sonuç olarak SimpleResponse nesnesini döner.
             </summary>
             <param name="dto"></param>
@@ -187,6 +189,7 @@
         </member>
         <member name="M:SimpleInfra.Business.Core.SimpleBaseBusiness`2.Dispose(System.Boolean)">
             <summary>
+            Disposes object.
             </summary>
             <param name="disposing"></param>
         </member>

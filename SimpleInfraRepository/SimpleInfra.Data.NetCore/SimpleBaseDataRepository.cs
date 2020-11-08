@@ -7,9 +7,6 @@
 namespace SimpleInfra.Data.NetCore
 {
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.SqlServer;
-    using Microsoft.EntityFrameworkCore.SqlServer.Query;
-    using Microsoft.EntityFrameworkCore.Query;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -132,12 +129,11 @@ namespace SimpleInfra.Data.NetCore
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public virtual IQueryable<T> GetAll(bool asNoTracking = false)
         {
-            IQueryable<T> iq = null;
+            IQueryable<T> iq;
 
             if (asNoTracking)
             {
-                iq = dbSet
-                        .AsNoTracking();
+                iq = dbSet.AsNoTracking();
             }
             else
             {
@@ -199,7 +195,7 @@ namespace SimpleInfra.Data.NetCore
             uint pageNo = pageNumber < 1 ? 1 : pageNumber;
             uint itemCount = pageItemCount < 1 ? 1 : pageItemCount;
 
-            IQueryable<T> iq = null;
+            IQueryable<T> iq;
             if (asNoTracking)
             {
                 iq = dbSet
@@ -247,7 +243,7 @@ namespace SimpleInfra.Data.NetCore
             uint pageNo = pageNumber < 1 ? 1 : pageNumber;
             uint itemCount = pageItemCount < 1 ? 1 : pageItemCount;
 
-            IQueryable<T> iq = null;
+            IQueryable<T> iq;
             if (asNoTracking)
             {
                 iq = dbSet
@@ -289,14 +285,14 @@ namespace SimpleInfra.Data.NetCore
             {
                 instance = dbSet
                         .Where(predicate)
-                .AsNoTracking()
-                .SingleOrDefault();
+                        .AsNoTracking()
+                        .SingleOrDefault();
             }
             else
             {
                 instance = dbSet
                         .Where(predicate)
-                .SingleOrDefault();
+                        .SingleOrDefault();
             }
 
             return instance;
@@ -318,14 +314,14 @@ namespace SimpleInfra.Data.NetCore
             {
                 instance = dbSet
                         .Where(predicate)
-                .AsNoTracking()
-                .Single();
+                        .AsNoTracking()
+                        .Single();
             }
             else
             {
                 instance = dbSet
                         .Where(predicate)
-                .Single();
+                        .Single();
             }
 
             return instance;
@@ -539,9 +535,7 @@ namespace SimpleInfra.Data.NetCore
         /// <returns> The result returned by the database after executing the command.</returns>
         public int ExecuteSqlCommand(string sql, params object[] parameters)
         {
-            var result = -1;
-
-            result = dbContext.Database.ExecuteSqlRaw(sql: sql, parameters: parameters);
+            var result = dbContext.Database.ExecuteSqlRaw(sql: sql, parameters: parameters);
 
             return result;
         }
