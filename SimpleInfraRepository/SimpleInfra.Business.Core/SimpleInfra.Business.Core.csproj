@@ -58,9 +58,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SI.Extensions.Repo\SI.Extensions.Repo.Soln\SimpleInfra.Common.Extensions\SimpleInfra.Common.Extensions.csproj">
-      <Project>{439E5314-5CD3-494F-A948-68C8D3FD94EC}</Project>
-      <Name>SimpleInfra.Common.Extensions</Name>
+    <ProjectReference Include="..\..\..\SI.Extensions.Repo\SI.Extensions.Repo.Soln\Coddie.Common\Coddie.Common\Coddie.Common.csproj">
+      <Project>{934b5877-7b51-48d4-a0b7-a85531beccc5}</Project>
+      <Name>Coddie.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\SimpleInfra.Business.Interfaces.Core\SimpleInfra.Business.Interfaces.Core.csproj">
       <Project>{E0128372-E7AC-4932-8C99-2449F612AB73}</Project>
