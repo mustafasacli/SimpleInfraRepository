@@ -1,7 +1,7 @@
-﻿namespace SimpleInfra.Data
+﻿namespace SimpleInfra.Data.NetCore
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
-    using System.Data.Entity;
 
     /// <summary>
     ///

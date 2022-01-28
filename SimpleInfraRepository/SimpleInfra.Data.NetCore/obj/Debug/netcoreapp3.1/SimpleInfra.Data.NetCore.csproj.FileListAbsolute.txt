@@ -1,0 +1,9 @@
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\bin\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.deps.json
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\bin\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.dll
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\bin\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.pdb
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\obj\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.csprojAssemblyReference.cache
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\obj\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.AssemblyInfoInputs.cache
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\obj\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.AssemblyInfo.cs
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\obj\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.csproj.CoreCompileInputs.cache
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\obj\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.dll
+D:\Depo\Git_Projects\SimpleInfraRepository\SimpleInfraRepository\SimpleInfra.Data.NetCore\obj\Debug\netcoreapp3.1\SimpleInfra.Data.NetCore.pdb

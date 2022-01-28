@@ -1,6 +1,7 @@
-﻿namespace SimpleInfra.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace SimpleInfra.Data.NetCore
 {
-    using System.Data.Entity;
 
     /// <summary>
     /// Defines the <see cref="SimpleBaseRepository{T}" />

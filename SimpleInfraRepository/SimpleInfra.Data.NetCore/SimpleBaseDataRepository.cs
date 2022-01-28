@@ -4,13 +4,11 @@
 // summary:	Implements the simple base data repository class
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace SimpleInfra.Data
+namespace SimpleInfra.Data.NetCore
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Validation;
     using System.Linq;
     using System.Linq.Expressions;
 
@@ -51,17 +49,12 @@ namespace SimpleInfra.Data
         /// <param name="proxyCreationEnabled">   (Optional) True if Proxy Creation Enabled. </param>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         protected SimpleBaseDataRepository(
-            DbContext dbContext, ISimpleRepoLogger simpleRepoLogger = null, bool errorLogEnable = true,
-            bool lazyLoadingEnabled = false, bool autoDetectChangesEnabled = false, bool proxyCreationEnabled = false)
+            DbContext dbContext, ISimpleRepoLogger simpleRepoLogger = null, bool errorLogEnable = true)
         {
             this.LogError = errorLogEnable;
             this.dbContext = dbContext;
             this.dbSet = dbContext.Set<T>();
             this.SimpleRepoLogger = simpleRepoLogger;
-
-            this.dbContext.Configuration.LazyLoadingEnabled = lazyLoadingEnabled;
-            this.dbContext.Configuration.AutoDetectChangesEnabled = autoDetectChangesEnabled;
-            this.dbContext.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,12 +129,11 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public virtual IQueryable<T> GetAll(bool asNoTracking = false)
         {
-            IQueryable<T> iq = null;
+            IQueryable<T> iq;
 
             if (asNoTracking)
             {
-                iq = dbSet
-                        .AsNoTracking();
+                iq = dbSet.AsNoTracking();
             }
             else
             {
@@ -203,7 +195,7 @@ namespace SimpleInfra.Data
             uint pageNo = pageNumber < 1 ? 1 : pageNumber;
             uint itemCount = pageItemCount < 1 ? 1 : pageItemCount;
 
-            IQueryable<T> iq = null;
+            IQueryable<T> iq;
             if (asNoTracking)
             {
                 iq = dbSet
@@ -251,7 +243,7 @@ namespace SimpleInfra.Data
             uint pageNo = pageNumber < 1 ? 1 : pageNumber;
             uint itemCount = pageItemCount < 1 ? 1 : pageItemCount;
 
-            IQueryable<T> iq = null;
+            IQueryable<T> iq;
             if (asNoTracking)
             {
                 iq = dbSet
@@ -293,14 +285,14 @@ namespace SimpleInfra.Data
             {
                 instance = dbSet
                         .Where(predicate)
-                .AsNoTracking()
-                .SingleOrDefault();
+                        .AsNoTracking()
+                        .SingleOrDefault();
             }
             else
             {
                 instance = dbSet
                         .Where(predicate)
-                .SingleOrDefault();
+                        .SingleOrDefault();
             }
 
             return instance;
@@ -322,14 +314,14 @@ namespace SimpleInfra.Data
             {
                 instance = dbSet
                         .Where(predicate)
-                .AsNoTracking()
-                .Single();
+                        .AsNoTracking()
+                        .Single();
             }
             else
             {
                 instance = dbSet
                         .Where(predicate)
-                .Single();
+                        .Single();
             }
 
             return instance;
@@ -516,18 +508,6 @@ namespace SimpleInfra.Data
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Creates a new T. </summary>
-        ///
-        /// <remarks>   Msacli, 30.04.2019. </remarks>
-        ///
-        /// <returns>   A T. </returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public T Create()
-        {
-            return dbSet.Create<T>();
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   SQL query. </summary>
         ///
         /// <remarks>   Msacli, 30.04.2019. </remarks>
@@ -538,40 +518,9 @@ namespace SimpleInfra.Data
         ///
         /// <returns>   A DbRawSqlQuery&lt;TElement&gt; </returns>
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual DbRawSqlQuery<TElement> SqlQuery<TElement>(string sql, params object[] parameters) where TElement : class
+        public virtual IQueryable<T> SqlQuery(string sql, params object[] parameters)
         {
-            return dbContext.Database.SqlQuery<TElement>(sql: sql, parameters: parameters);
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   SQL query. </summary>
-        ///
-        /// <remarks>   Msacli, 30.04.2019. </remarks>
-        ///
-        /// <param name="elementType"> Type of the element. </param>
-        /// <param name="sql">          The SQL. </param>
-        /// <param name="parameters">   A variable-length parameters list containing parameters. </param>
-        ///
-        /// <returns>   A DbRawSqlQuery </returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual DbRawSqlQuery SqlQuery(Type elementType, string sql, params object[] parameters)
-        {
-            return dbContext.Database.SqlQuery(elementType: elementType, sql: sql, parameters: parameters);
-        }
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   SQL set query. </summary>
-        ///
-        /// <remarks>   Msacli, 30.04.2019. </remarks>
-        ///
-        /// <param name="sql">          The SQL. </param>
-        /// <param name="parameters">   A variable-length parameters list containing parameters. </param>
-        ///
-        /// <returns>   A DbSqlQuery&lt;T&gt; </returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public virtual DbSqlQuery<T> SqlSetQuery(string sql, params object[] parameters)
-        {
-            return dbSet.SqlQuery(sql: sql, parameters: parameters);
+            return dbSet.FromSqlRaw<T>(sql: sql, parameters: parameters);
         }
 
         /// <summary>
@@ -586,29 +535,7 @@ namespace SimpleInfra.Data
         /// <returns> The result returned by the database after executing the command.</returns>
         public int ExecuteSqlCommand(string sql, params object[] parameters)
         {
-            var result = -1;
-
-            result = dbContext.Database.ExecuteSqlCommand(sql: sql, parameters: parameters);
-
-            return result;
-        }
-
-        /// <summary>
-        ///     Executes the given DDL/DML command against the database. As with any API that
-        ///     accepts SQL it is important to parameterize any user input to protect against
-        ///     a SQL injection attack. You can include parameter place holders in the SQL query
-        ///     string and then supply parameter values as additional arguments. Any parameter
-        ///     values you supply will automatically be converted to a DbParameter.
-        /// </summary>
-        /// <param name="transactionalBehavior"> TransactionalBehavior parameter. </param>
-        /// <param name="sql">The command string.</param>
-        /// <param name="parameters">The parameters to apply to the command string.</param>
-        /// <returns> The result returned by the database after executing the command.</returns>
-        public int ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters)
-        {
-            var result = -1;
-
-            result = dbContext.Database.ExecuteSqlCommand(transactionalBehavior: transactionalBehavior, sql: sql, parameters: parameters);
+            var result = dbContext.Database.ExecuteSqlRaw(sql: sql, parameters: parameters);
 
             return result;
         }
@@ -708,30 +635,6 @@ namespace SimpleInfra.Data
             {
                 result = dbContext.SaveChanges();
             }
-            catch (DbEntityValidationException dve)
-            {
-                // Exception logging
-                try
-                {
-                    if (LogError)
-                    {
-                        SimpleRepoLogger?.Error(dve);
-                    }
-                }
-                catch { }
-
-                try
-                {
-                    if (LogError)
-                    {
-                        var errors = GetValidationErrors(dve);
-                        SimpleRepoLogger?.Error(errors.ToArray());
-                    }
-                }
-                catch { }
-
-                throw;
-            }
             catch (Exception e)
             {
                 try
@@ -807,38 +710,6 @@ namespace SimpleInfra.Data
 
         #endregion IDisposable Members
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   Gets validation errors. </summary>
-        ///
-        /// <remarks>   Msacli, 30.04.2019. </remarks>
-        ///
-        /// <param name="ex">   Details of the exception. </param>
-        ///
-        /// <returns>   The validation errors. </returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        protected List<string> GetValidationErrors(DbEntityValidationException ex)
-        {
-            var errorMessages = new List<string>();
-
-            try
-            {
-                foreach (DbEntityValidationResult validationResult in ex.EntityValidationErrors)
-                {
-                    string entityName = validationResult.Entry?.Entity.GetType().Name;
-                    foreach (DbValidationError error in validationResult.ValidationErrors)
-                    {
-                        errorMessages.Add(string.Format("{0}.{1} : {2}", entityName, error.PropertyName, error.ErrorMessage));
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                // Exception logging
-                SimpleRepoLogger?.Error(e);
-            }
-
-            return errorMessages;
-        }
 
         /// <summary>
         /// Checks Dbcontext is disposed.
@@ -851,7 +722,7 @@ namespace SimpleInfra.Data
             var isContextDisposed = false;
 
             try
-            { var config = dbContext.Configuration; }
+            { var database = dbContext.Database; }
             catch (ObjectDisposedException dex)
             {
                 isContextDisposed = true;

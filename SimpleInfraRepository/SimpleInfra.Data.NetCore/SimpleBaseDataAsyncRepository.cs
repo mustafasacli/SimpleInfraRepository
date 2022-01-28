@@ -4,11 +4,11 @@
 // summary:	Implements the simple base data repository class
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace SimpleInfra.Data
+namespace SimpleInfra.Data.NetCore
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.SqlServer;
     using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Validation;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Threading.Tasks;
@@ -119,19 +119,7 @@ namespace SimpleInfra.Data
         /// <returns></returns>
         public Task<int> ExecuteSqlCommandAsync(string sql, params object[] parameters)
         {
-            return dbContext.Database.ExecuteSqlCommandAsync(sql: sql, parameters: parameters);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="transactionalBehavior"></param>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        public Task<int> ExecuteSqlCommandAsync(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters)
-        {
-            return dbContext.Database.ExecuteSqlCommandAsync(transactionalBehavior: transactionalBehavior, sql: sql, parameters: parameters);
+            return dbContext.Database.ExecuteSqlRawAsync(sql: sql, parameters: parameters);
         }
 
         /// <summary>
@@ -150,7 +138,7 @@ namespace SimpleInfra.Data
             }
 
             var entity = dbSet.FindAsync(oid);
-            return entity;
+            return entity.AsTask();
         }
 
         /// <summary>
@@ -162,36 +150,6 @@ namespace SimpleInfra.Data
             try
             {
                 return dbContext.SaveChangesAsync();
-            }
-            catch (DbEntityValidationException dve)
-            {
-                // Exception logging
-                try
-                {
-                    if (LogError)
-                    {
-                        SimpleRepoLogger?.Error(dve);
-                    }
-                }
-                catch
-                { }
-                finally
-                { }
-
-                try
-                {
-                    if (LogError)
-                    {
-                        var errors = GetValidationErrors(dve);
-                        SimpleRepoLogger?.Error(errors.ToArray());
-                    }
-                }
-                catch
-                { }
-                finally
-                { }
-
-                throw;
             }
             catch (Exception e)
             {

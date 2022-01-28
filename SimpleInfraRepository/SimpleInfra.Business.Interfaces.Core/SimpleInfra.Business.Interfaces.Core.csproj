@@ -53,6 +53,10 @@
       <Project>{75DE72BA-9441-4535-933E-066D9F310AAD}</Project>
       <Name>SimpleInfra.Dto.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimpleInfra.Entity.Core\SimpleInfra.Entity.Core.csproj">
+      <Project>{5BD341BE-37AA-4CFD-A25D-F152C4B43CA9}</Project>
+      <Name>SimpleInfra.Entity.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

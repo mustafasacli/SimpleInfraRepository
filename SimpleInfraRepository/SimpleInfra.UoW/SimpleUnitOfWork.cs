@@ -6,6 +6,7 @@
     using SimpleFileLogging.Interfaces;
     using SimpleFileLogging.Enums;
     using System;
+    using System.Data.Entity;
 
     /// <summary>
     /// Defines the <see cref="SimpleUnitOfWork" />
@@ -13,7 +14,7 @@
     public class SimpleUnitOfWork : ISimpleUnitOfWork
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SimpleUnitOfWork()
         {
@@ -42,19 +43,10 @@
         {
             var contextTypeName = SimpleUnitOfWorkCache.GetDbContextName<T>();
             var context = SimpleUnitOfWorkCache.GetDbContext(contextTypeName);
-            var isContextDisposed = false;
 
-            try
-            { var config = context.Configuration; }
-            catch (ObjectDisposedException dex)
-            {
-                isContextDisposed = true;
-                Logger?.Error(dex,
-                    $"Entity: {typeof(T).FullName}",
-                    $"contextTypeName: {contextTypeName}");
-            }
+            var isContextDisposedOrNull = IsContextDisposedOrNull(context);
 
-            if (context == null || isContextDisposed)
+            if (isContextDisposedOrNull)
             {
                 SimpleUnitOfWorkCache.TryRemove(contextTypeName, out context);
                 context = SimpleUnitOfWorkCache.GetDbContext(contextTypeName);
@@ -72,13 +64,41 @@
             {
                 var contextTypeName = eventargs.Context.GetType().FullName;
                 var context = SimpleUnitOfWorkCache.GetDbContext(contextTypeName);
-                SimpleUnitOfWorkCache.TryRemove(contextTypeName, out context);
+                var result = SimpleUnitOfWorkCache.TryRemove(contextTypeName, out context);
+                if (!result)
+                {
+                    Logger?.Debug(string.Format($"{contextTypeName} could not be removed."));
+                }
             }
             catch (Exception ee)
             {
                 Console.WriteLine(ee.ToString());
                 Logger?.Error(ee);
             }
+        }
+
+        /// <summary>
+        /// Checks dbcontext is nul or disposed.
+        /// </summary>
+        /// <param name="dbContext"></param>
+        /// <returns></returns>
+        protected bool IsContextDisposedOrNull(DbContext dbContext)
+        {
+            if (dbContext == null)
+                return true;
+
+            var isContextDisposed = false;
+
+            try
+            { var config = dbContext.Configuration; }
+            catch (ObjectDisposedException dex)
+            {
+                isContextDisposed = true;
+                Logger?.Error(dex,
+                    $"Entity: {dbContext.GetType().FullName}");
+            }
+
+            return isContextDisposed;
         }
     }
 }

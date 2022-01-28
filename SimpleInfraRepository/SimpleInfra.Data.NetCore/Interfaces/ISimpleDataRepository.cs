@@ -1,9 +1,7 @@
-namespace SimpleInfra.Data
+namespace SimpleInfra.Data.NetCore
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
     using System.Linq;
     using System.Linq.Expressions;
 
@@ -268,16 +266,6 @@ namespace SimpleInfra.Data
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void Delete(object oid);
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   SQL set query. </summary>
-        ///
-        /// <param name="sql">          The SQL. </param>
-        /// <param name="parameters">   A variable-length parameters list containing parameters. </param>
-        ///
-        /// <returns>   A DbSqlQuery&lt;T&gt; </returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        DbSqlQuery<T> SqlSetQuery(string sql, params object[] parameters);
-
         /// <summary>
         ///     Executes the given DDL/DML command against the database. As with any API that
         ///     accepts SQL it is important to parameterize any user input to protect against
@@ -289,41 +277,6 @@ namespace SimpleInfra.Data
         /// <param name="parameters">The parameters to apply to the command string.</param>
         /// <returns> The result returned by the database after executing the command.</returns>
         int ExecuteSqlCommand(string sql, params object[] parameters);
-
-        /// <summary>
-        ///     Executes the given DDL/DML command against the database. As with any API that
-        ///     accepts SQL it is important to parameterize any user input to protect against
-        ///     a SQL injection attack. You can include parameter place holders in the SQL query
-        ///     string and then supply parameter values as additional arguments. Any parameter
-        ///     values you supply will automatically be converted to a DbParameter.
-        /// </summary>
-        /// <param name="transactionalBehavior"> TransactionalBehavior parameter. </param>
-        /// <param name="sql">The command string.</param>
-        /// <param name="parameters">The parameters to apply to the command string.</param>
-        /// <returns> The result returned by the database after executing the command.</returns>
-        int ExecuteSqlCommand(TransactionalBehavior transactionalBehavior, string sql, params object[] parameters);
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   SQL query. </summary>
-        ///
-        /// <typeparam name="TElement"> Type of the element. </typeparam>
-        /// <param name="sql">          The SQL. </param>
-        /// <param name="parameters">   A variable-length parameters list containing parameters. </param>
-        ///
-        /// <returns>   A DbRawSqlQuery&lt;TElement&gt; </returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        DbRawSqlQuery<TElement> SqlQuery<TElement>(string sql, params object[] parameters) where TElement : class;
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>   SQL query. </summary>
-        ///
-        /// <param name="elementType">          The Element Type. </param>
-        /// <param name="sql">          The SQL. </param>
-        /// <param name="parameters">   A variable-length parameters list containing parameters. </param>
-        ///
-        /// <returns>   A DbRawSqlQuery </returns>
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        DbRawSqlQuery SqlQuery(Type elementType, string sql, params object[] parameters);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Gets by id. </summary>

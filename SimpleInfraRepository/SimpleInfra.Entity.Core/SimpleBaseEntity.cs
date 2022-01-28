@@ -5,7 +5,7 @@
     /// <summary>
     /// Defines the <see cref="SimpleBaseEntity" />
     /// </summary>
-    public abstract class SimpleBaseEntity : IEntityAdd, IEntityUpdate
+    public class SimpleBaseEntity : IEntityAdd, IEntityUpdate
     {
     }
 }
